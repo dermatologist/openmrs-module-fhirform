@@ -1,9 +1,10 @@
-package org.openmrs.module.fhirform.api;
+package org.openmrs.module.fhirform;
 
 import org.openmrs.BaseOpenmrsData;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 /**
  * Created by beapen on 01/11/2017.
