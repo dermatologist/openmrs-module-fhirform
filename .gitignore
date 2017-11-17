@@ -33,3 +33,5 @@ omod/src/main/webapp/resources/bower_components
 omod/src/main/webapp/node_modules/
 
 *.DS_Store
+omod/src/main/render/
+omod/src/main/webapp/resources/scripts/bundle.js
