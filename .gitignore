@@ -1,4 +1,5 @@
 omod/src/main/webapp/resources/bower_components/
+node_modules/
 
 *.class
 .settings
