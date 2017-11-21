@@ -4,7 +4,7 @@ FHIR (Fast Healthcare Interoperability Resources) Specification, is a standard f
 
 openMRS is a highly customizable EMR platform that can be extended and customized by user-contributed modules. More details here: http://openmrs.org
 
-openmrs-module-fhirform is an OpenMRS module for rendering a FHIR questionnaire. The submission can be stored as a string locally and sent to a FHIR compliant server as a QuestionnaireResponse.
+openmrs-module-fhirform is an OpenMRS module for rendering a FHIR questionnaire. The submission can be stored as JSON locally and sent to a FHIR compliant server as a QuestionnaireResponse.
 
 Approach:
 The transformation will be achieved using Rob Tweed's qewd-transform-JSON (https://github.com/robtweed/qewd-transform-json). Rendering will be achieved using jsonform (https://github.com/joshfire/jsonform)
