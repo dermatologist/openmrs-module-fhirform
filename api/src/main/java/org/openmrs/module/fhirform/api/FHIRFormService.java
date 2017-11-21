@@ -9,12 +9,17 @@
  */
 package org.openmrs.module.fhirform.api;
 
+import org.openmrs.Patient;
 import org.openmrs.annotation.Authorized;
 import org.openmrs.api.APIException;
 import org.openmrs.api.OpenmrsService;
+import org.openmrs.module.fhirform.FHIRForm;
 import org.openmrs.module.fhirform.FHIRFormConfig;
+import org.openmrs.module.fhirform.FHIRFormDef;
 import org.openmrs.module.fhirform.Item;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * The main service of this module, which is exposed for other modules. See
@@ -45,4 +50,30 @@ public interface FHIRFormService extends OpenmrsService {
 	@Authorized(FHIRFormConfig.MODULE_PRIVILEGE)
 	@Transactional
 	Item saveItem(Item item) throws APIException;
+
+    @Transactional(readOnly = true)
+    List<FHIRFormDef> getAllDef(String formtype);
+
+    @Transactional(readOnly = true)
+    List<FHIRForm> getAllFHIRForms(String status);
+
+    @Transactional(readOnly = true)
+    FHIRForm getFHIRFormById(int id);
+
+    FHIRForm saveFHIRForm(FHIRForm FHIRForm);
+
+    void purgeFHIRForm(FHIRForm FHIRForm);
+
+    @Transactional(readOnly = true)
+    FHIRFormDef getFHIRFormDefById(int id);
+
+    FHIRFormDef saveFHIRFormDef(FHIRFormDef FHIRFormDef);
+
+    void purgeFHIRFormDef(FHIRFormDef FHIRFormDef);
+
+    @Transactional(readOnly = true)
+    List<FHIRForm> getAllFHIRFormsByDef(FHIRFormDef FHIRFormDef);
+
+    @Transactional(readOnly = true)
+    List<FHIRForm> getAllFHIRFormsByPatient(Patient patient);
 }
