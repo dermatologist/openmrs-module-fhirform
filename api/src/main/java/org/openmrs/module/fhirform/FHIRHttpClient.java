@@ -6,7 +6,6 @@ package org.openmrs.module.fhirform;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.jboss.resteasy.client.jaxrs.BasicAuthentication;
 import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -24,6 +23,7 @@ public class FHIRHttpClient {
     private static Log log = LogFactory.getLog(FHIRHttpClient.class);
 
     private AdministrationService administrationService;
+
     private String baseUrl;
     private String userName;
     private String password;
@@ -32,13 +32,17 @@ public class FHIRHttpClient {
     private String urlString;
 
     public FHIRHttpClient() {
-        administrationService = Context.getAdministrationService();
-        baseUrl = administrationService.getGlobalProperty(FHIRFormConstants.GLOBALPROPERTY_FHIRFORM_BASEURL,
-                FHIRFormConstants.GLOBALPROPERTY_FHIRFORM_DEFAULT_BASEURL);
-        userName = administrationService.getGlobalProperty(FHIRFormConstants.GLOBALPROPERTY_FHIRFORM_USERNAME,
-                FHIRFormConstants.GLOBALPROPERTY_FHIRFORM_DEFAULT_USERNAME);
-        password = administrationService.getGlobalProperty(FHIRFormConstants.GLOBALPROPERTY_FHIRFORM_PASSWORD,
-                FHIRFormConstants.GLOBALPROPERTY_FHIRFORM_DEFAULT_PASSWORD);
+        try {
+            administrationService = Context.getAdministrationService();
+            baseUrl = administrationService.getGlobalProperty(FHIRFormConstants.GLOBALPROPERTY_FHIRFORM_BASEURL,
+                    FHIRFormConstants.GLOBALPROPERTY_FHIRFORM_DEFAULT_BASEURL);
+            userName = administrationService.getGlobalProperty(FHIRFormConstants.GLOBALPROPERTY_FHIRFORM_USERNAME,
+                    FHIRFormConstants.GLOBALPROPERTY_FHIRFORM_DEFAULT_USERNAME);
+            password = administrationService.getGlobalProperty(FHIRFormConstants.GLOBALPROPERTY_FHIRFORM_PASSWORD,
+                    FHIRFormConstants.GLOBALPROPERTY_FHIRFORM_DEFAULT_PASSWORD);
+        } catch (Exception e) {
+            baseUrl = FHIRFormConstants.GLOBALPROPERTY_FHIRFORM_DEFAULT_BASEURL;
+        }
     }
 
     public JSONObject getFHIRForm(String formID, String version) {
@@ -55,7 +59,10 @@ public class FHIRHttpClient {
     public Object get() {
         Client client = ClientBuilder.newClient();
         ResteasyWebTarget target = (ResteasyWebTarget) client.target(this.urlString);
-        target.register(new BasicAuthentication(this.userName, this.password));
+
+        // TODO: Change this for authentication
+        //target.register(new BasicAuthentication(this.userName, this.password));
+
         Response response = target.request().get();
         //Read output in string format
         String return_value = response.readEntity(String.class);
