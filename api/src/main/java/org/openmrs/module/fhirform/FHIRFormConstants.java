@@ -16,6 +16,23 @@ public class FHIRFormConstants {
     public final static String ERROR = "error";
 
 
+    public final static String GLOBALPROPERTY_NOT_FOUND = "Not Found";
+
+    public final static String GLOBALPROPERTY_FHIRFORM_BASEURL = "fhirform.baseurl";
+
+    public final static String GLOBALPROPERTY_FHIRFORM_DEFAULT_BASEURL = "https://fhirtest.uhn.ca/baseDstu3/Questionnaire/";
+
+    public final static String GLOBALPROPERTY_FHIRFORM_USERNAME = "fhirform.username";
+
+    public final static String GLOBALPROPERTY_FHIRFORM_DEFAULT_USERNAME = "beapen";
+
+    public final static String GLOBALPROPERTY_FHIRFORM_PASSWORD = "fhirform.password";
+
+    public final static String GLOBALPROPERTY_FHIRFORM_DEFAULT_PASSWORD = "fhirform123";
+
+
+    public final static int GLOBALPROPERTY_FHIRFORM_SUCCESS = 200;
+    
     public static final SimpleObject NUFORM_CONSTANTS() {
         SimpleObject o = new SimpleObject();
         o.put("GENERALFORM", "1");

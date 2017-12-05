@@ -116,6 +116,23 @@
 		<file>messages_es.properties</file>
 	</messages>
 	<!-- /Internationalization -->
-	
+
+    <!-- Global Properties -->
+    <globalProperty>
+        <property>nuclinic.username</property>
+        <defaultValue>beapen</defaultValue>
+        <description>Login credentials for your website admin - username</description>
+    </globalProperty>
+    <globalProperty>
+        <property>nuclinic.password</property>
+        <defaultValue>nuclinic123</defaultValue>
+        <description>Login credentials for your website admin - password</description>
+    </globalProperty>
+    <globalProperty>
+        <property>nuclinic.baseurl</property>
+        <defaultValue>https://fhirtest.uhn.ca/baseDstu3/Questionnaire/</defaultValue>
+        <description>Base URL without trailing slash</description>
+    </globalProperty>
+
 </module>
 
