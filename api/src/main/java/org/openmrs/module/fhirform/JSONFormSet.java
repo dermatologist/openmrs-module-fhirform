@@ -1,15 +1,17 @@
 package org.openmrs.module.fhirform;
 
 import com.google.gson.Gson;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 
 /**
  * Created by beapen on 04/12/2017.
  */
+@Component
 public class JSONFormSet {
 
-    public ArrayList<JSONFormItem> __items;
+    public ArrayList<JSONFormItem> __items = new ArrayList<JSONFormItem>();
     public String __type = "object";
     public String __title = "Title";
 

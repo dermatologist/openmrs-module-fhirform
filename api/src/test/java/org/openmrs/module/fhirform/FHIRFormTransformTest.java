@@ -1,6 +1,5 @@
 package org.openmrs.module.fhirform;
 
-import org.hl7.fhir.dstu3.model.Questionnaire;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -39,14 +38,8 @@ public class FHIRFormTransformTest {
     }
 
     @Test
-    public void getQuestionnaire() throws Exception {
-        Questionnaire q = fhirFormTransform.getQuestionnaire();
-        System.out.print(q.getName());
-    }
-
-    @Test
     public void getJsonForm() throws Exception {
-        String q = fhirFormTransform.getJsonForm();
+        String q = fhirFormTransform.getJsonForm("http://tomcat.nuchange.ca/phr/baseDstu3/Questionnaire/", "fhirform-example-qu-1", "1");
         System.out.print(q);
     }
 }

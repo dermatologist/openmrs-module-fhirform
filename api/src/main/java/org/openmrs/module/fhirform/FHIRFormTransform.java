@@ -15,38 +15,70 @@ public class FHIRFormTransform {
     @Autowired
     public FHIRHttpClient fhirHttpClient;
     FhirContext ctxDstu3 = FhirContext.forDstu3();
+
+    @Autowired
     private JSONFormItem jsonFormItem;
+
+    @Autowired
     private JSONFormSet jsonFormSet;
+
+    @Autowired
     private JSONForm jsonForm;
+
     private String formID;
     private String version;
+    private String questionnaireUrl;
 
-    public Questionnaire getQuestionnaire() {
-        if (fhirHttpClient == null)
-            fhirHttpClient = new FHIRHttpClient();
-        this.formID = "144829";
-        this.version = "10";
-        Object o = fhirHttpClient.getFHIRForm("", this.formID, this.version);
-        IParser parser = ctxDstu3.newJsonParser();
-        return parser.parseResource(Questionnaire.class, o.toString());
+    FHIRFormTransform() {
+        jsonFormItem = new JSONFormItem();
+        jsonFormSet = new JSONFormSet();
+        jsonForm = new JSONForm();
 
     }
 
-    public String getJsonForm() {
+    public String getJsonForm(String url, String formID, String version) {
         if (fhirHttpClient == null)
             fhirHttpClient = new FHIRHttpClient();
-        this.formID = "144829";
-        this.version = "10";
-        Object o = fhirHttpClient.getFHIRForm("", this.formID, this.version);
+        if (!url.isEmpty())
+            this.questionnaireUrl = url;
+        if (!formID.isEmpty())
+            this.formID = formID;
+        if (!version.isEmpty())
+            this.version = version;
+        Object o = fhirHttpClient.getFHIRForm(this.questionnaireUrl, this.formID, this.version);
         IParser parser = ctxDstu3.newJsonParser();
         Questionnaire q = parser.parseResource(Questionnaire.class, o.toString());
         for (Questionnaire.QuestionnaireItemComponent i : q.getItem()) {
             jsonFormItem.set_title(i.getText());
-            jsonFormItem.set_type(i.getType().toString());
+            jsonFormItem.set_type(i.getType().toString().toLowerCase());
             jsonFormSet.add_item(jsonFormItem);
         }
 
         jsonForm.add_item(jsonFormSet);
         return jsonForm.getForm();
+    }
+
+    public String getFormID() {
+        return formID;
+    }
+
+    public void setFormID(String formID) {
+        this.formID = formID;
+    }
+
+    public String getVersion() {
+        return version;
+    }
+
+    public void setVersion(String version) {
+        this.version = version;
+    }
+
+    public String getQuestionnaireUrl() {
+        return questionnaireUrl;
+    }
+
+    public void setQuestionnaireUrl(String questionnaireUrl) {
+        this.questionnaireUrl = questionnaireUrl;
     }
 }
