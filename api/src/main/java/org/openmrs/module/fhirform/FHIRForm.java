@@ -50,7 +50,7 @@ public class FHIRForm extends BaseOpenmrsData {
 
     @ManyToOne
     @JoinColumn(name = "fhirform_def_id", nullable = false)
-    private FHIRFormDef fhirFormDef;
+    private FHIRFormDef fhirFormDef;  //@OneToMany(mappedBy = "fhirFormDef") in the other
 
     @Override
     public Integer getId() {

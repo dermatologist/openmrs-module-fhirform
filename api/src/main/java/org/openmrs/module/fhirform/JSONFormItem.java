@@ -1,8 +1,11 @@
 package org.openmrs.module.fhirform;
 
+import org.springframework.stereotype.Component;
+
 /**
  * Created by beapen on 04/12/2017.
  */
+@Component
 public class JSONFormItem {
 
     public String __type = "string";
