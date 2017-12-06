@@ -41,7 +41,7 @@ public class FHIRFormDef extends BaseOpenmrsData {
 
     private String submissionUrl;
 
-    @OneToMany(mappedBy = "fhireformDef")
+    @OneToMany(mappedBy = "fhirFormDef")
     private Set<FHIRForm> fhirforms;
 
     @Override

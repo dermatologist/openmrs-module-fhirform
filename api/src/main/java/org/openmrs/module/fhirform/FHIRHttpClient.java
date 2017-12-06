@@ -13,6 +13,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.openmrs.api.AdministrationService;
 import org.openmrs.api.context.Context;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.ws.rs.client.Client;
@@ -43,6 +44,7 @@ public class FHIRHttpClient {
             password = administrationService.getGlobalProperty(FHIRFormConstants.GLOBALPROPERTY_FHIRFORM_PASSWORD,
                     FHIRFormConstants.GLOBALPROPERTY_FHIRFORM_DEFAULT_PASSWORD);
         } catch (Exception e) {
+            // For testing
             baseUrl = FHIRFormConstants.GLOBALPROPERTY_FHIRFORM_DEFAULT_BASEURL;
         }
     }

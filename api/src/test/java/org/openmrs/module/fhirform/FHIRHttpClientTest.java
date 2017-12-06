@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.openmrs.module.fhirform.api.impl.FHIRFormServiceImpl;
+import org.openmrs.test.BaseModuleContextSensitiveTest;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.junit.Assert.assertNotNull;
@@ -12,21 +13,13 @@ import static org.junit.Assert.assertNotNull;
 /**
  * Created by beapen on 05/12/2017.
  */
-public class FHIRHttpClientTest {
+public class FHIRHttpClientTest extends BaseModuleContextSensitiveTest {
 
     @Autowired
     FHIRHttpClient fhirHttpClient;
 
-    @InjectMocks
-    FHIRFormServiceImpl basicModuleService;
-
-
-    //@Mock
-    //AdministrationService administrationService;
-
     @Before
     public void setUp() throws Exception {
-        fhirHttpClient = new FHIRHttpClient();
     }
 
     @After

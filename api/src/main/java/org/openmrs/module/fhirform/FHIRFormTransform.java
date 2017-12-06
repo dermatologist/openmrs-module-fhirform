@@ -14,6 +14,7 @@ public class FHIRFormTransform {
 
     @Autowired
     public FHIRHttpClient fhirHttpClient;
+
     FhirContext ctxDstu3 = FhirContext.forDstu3();
 
     @Autowired
@@ -29,16 +30,8 @@ public class FHIRFormTransform {
     private String version;
     private String questionnaireUrl;
 
-    FHIRFormTransform() {
-        jsonFormItem = new JSONFormItem();
-        jsonFormSet = new JSONFormSet();
-        jsonForm = new JSONForm();
-
-    }
 
     public String getJsonForm(String url, String formID, String version) {
-        if (fhirHttpClient == null)
-            fhirHttpClient = new FHIRHttpClient();
         if (!url.isEmpty())
             this.questionnaireUrl = url;
         if (!formID.isEmpty())
