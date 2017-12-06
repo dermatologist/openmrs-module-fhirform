@@ -31,6 +31,10 @@ public class FHIRFormDef extends BaseOpenmrsData {
 
     private String questionnaire_id;
 
+    private String version;
+
+    private String questionnaireUrl;
+
     private String status = "ACTIVE";
 
     private String comments;
@@ -138,5 +142,21 @@ public class FHIRFormDef extends BaseOpenmrsData {
 
     public void setFhirforms(Set<FHIRForm> fhirforms) {
         this.fhirforms = fhirforms;
+    }
+
+    public String getVersion() {
+        return version;
+    }
+
+    public void setVersion(String version) {
+        this.version = version;
+    }
+
+    public String getQuestionnaireUrl() {
+        return questionnaireUrl;
+    }
+
+    public void setQuestionnaireUrl(String questionnaireUrl) {
+        this.questionnaireUrl = questionnaireUrl;
     }
 }

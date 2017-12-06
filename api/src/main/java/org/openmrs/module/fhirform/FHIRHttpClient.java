@@ -47,8 +47,11 @@ public class FHIRHttpClient {
         }
     }
 
-    public JSONObject getFHIRForm(String formID, String version) {
-        this.urlString = baseUrl + formID + "/_history/" + version;
+    public JSONObject getFHIRForm(String Url, String formID, String version) {
+        if (Url == "")
+            this.urlString = baseUrl + formID + "/_history/" + version;
+        else
+            this.urlString = Url + formID + "/_history/" + version;
         this.protocol = "GET";
         JSONObject jsonObject = new JSONObject();
         Object returnGet = get();

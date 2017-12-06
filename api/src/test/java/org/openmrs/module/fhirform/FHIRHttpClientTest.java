@@ -35,7 +35,7 @@ public class FHIRHttpClientTest {
 
     @Test
     public void getFHIRForm() throws Exception {
-        Object o = fhirHttpClient.getFHIRForm("144829", "10");
+        Object o = fhirHttpClient.getFHIRForm("", "144829", "10");
         assertNotNull(o);
         System.out.print(o);
     }
