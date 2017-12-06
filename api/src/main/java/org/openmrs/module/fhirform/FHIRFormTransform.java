@@ -29,5 +29,24 @@ public class FHIRFormTransform {
         Object o = fhirHttpClient.getFHIRForm("", this.formID, this.version);
         IParser parser = ctxDstu3.newJsonParser();
         return parser.parseResource(Questionnaire.class, o.toString());
+
+    }
+
+    public String getJsonForm() {
+        if (fhirHttpClient == null)
+            fhirHttpClient = new FHIRHttpClient();
+        this.formID = "144829";
+        this.version = "10";
+        Object o = fhirHttpClient.getFHIRForm("", this.formID, this.version);
+        IParser parser = ctxDstu3.newJsonParser();
+        Questionnaire q = parser.parseResource(Questionnaire.class, o.toString());
+        for (Questionnaire.QuestionnaireItemComponent i : q.getItem()) {
+            jsonFormItem.set_title(i.getText());
+            jsonFormItem.set_type(i.getType().toString());
+            jsonFormSet.add_item(jsonFormItem);
+        }
+
+        jsonForm.add_item(jsonFormSet);
+        return jsonForm.getForm();
     }
 }

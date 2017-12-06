@@ -44,4 +44,9 @@ public class FHIRFormTransformTest {
         System.out.print(q.getName());
     }
 
+    @Test
+    public void getJsonForm() throws Exception {
+        String q = fhirFormTransform.getJsonForm();
+        System.out.print(q);
+    }
 }
