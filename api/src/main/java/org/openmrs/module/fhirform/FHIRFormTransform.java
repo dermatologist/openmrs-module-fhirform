@@ -17,7 +17,6 @@ public class FHIRFormTransform {
 
     FhirContext ctxDstu3 = FhirContext.forDstu3();
 
-    @Autowired
     private JSONFormItem jsonFormItem;
 
     @Autowired
@@ -42,6 +41,7 @@ public class FHIRFormTransform {
         IParser parser = ctxDstu3.newJsonParser();
         Questionnaire q = parser.parseResource(Questionnaire.class, o.toString());
         for (Questionnaire.QuestionnaireItemComponent i : q.getItem()) {
+            jsonFormItem = new JSONFormItem();
             jsonFormItem.set_title(i.getText());
             jsonFormItem.set_type(i.getType().toString().toLowerCase());
             jsonFormSet.add_item(jsonFormItem);

@@ -11,10 +11,10 @@ import java.util.ArrayList;
 @Component
 public class JSONForm {
 
-    public ArrayList<JSONFormSet> __items = new ArrayList<JSONFormSet>();
+    public ArrayList<JSONFormSet> __forms = new ArrayList<JSONFormSet>();
 
     public void add_item(JSONFormSet __item) {
-        this.__items.add(__item);
+        this.__forms.add(__item);
     }
 
     public String getForm() {
