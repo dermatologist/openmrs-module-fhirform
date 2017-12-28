@@ -10,13 +10,13 @@ import java.util.Set;
  * Created by beapen on 01/11/2017.
  */
 @Entity(name = "fhirform.FHIRFormDef")
-@Table(name = "fhirform_def")
+@Table(name = "FHIRFormDef")
 public class FHIRFormDef extends BaseOpenmrsData {
 
 
     @Id
     @GeneratedValue
-    @Column(name = "fhirform_def_id")
+    @Column(name = "id")
     private Integer id;
 
     private String created_by;
@@ -29,7 +29,7 @@ public class FHIRFormDef extends BaseOpenmrsData {
 
     private String formtype = "FHIRFORM";
 
-    private String questionnaire_id;
+    //private String questionnaire_id;
 
     private String version;
 
@@ -41,7 +41,7 @@ public class FHIRFormDef extends BaseOpenmrsData {
 
     private String submissionUrl;
 
-    @OneToMany(mappedBy = "fhirFormDef")
+    @OneToMany(mappedBy = "FHIRFormDef")
     private Set<FHIRForm> fhirforms;
 
     @Override
@@ -104,14 +104,15 @@ public class FHIRFormDef extends BaseOpenmrsData {
         this.formtype = formtype;
     }
 
-    public String getQuestionnaire_id() {
-        return questionnaire_id;
-    }
+    /*
+        public String getQuestionnaire_id() {
+            return questionnaire_id;
+        }
 
-    public void setQuestionnaire_id(String questionnaire_id) {
-        this.questionnaire_id = questionnaire_id;
-    }
-
+        public void setQuestionnaire_id(String questionnaire_id) {
+            this.questionnaire_id = questionnaire_id;
+        }
+    */
     public String getStatus() {
         return status;
     }

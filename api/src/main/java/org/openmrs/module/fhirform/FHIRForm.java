@@ -10,12 +10,12 @@ import java.util.Date;
  * Created by beapen on 01/11/2017.
  */
 @Entity(name = "fhirform.FHIRForm")
-@Table(name = "fhirform_entries")
+@Table(name = "FHIRForm")
 public class FHIRForm extends BaseOpenmrsData {
 
     @Id
     @GeneratedValue
-    @Column(name = "fhirform_id")
+    @Column(name = "id")
     private Integer id;
 
     private String created_by;
@@ -42,14 +42,14 @@ public class FHIRForm extends BaseOpenmrsData {
 
     private String response;
 
-    private String questionnaire_id;
+    private String questionnaireUrl;
 
     private String status = "ACTIVE";
 
     private String comments;
 
     @ManyToOne
-    @JoinColumn(name = "fhirform_def_id", nullable = false)
+    @JoinColumn(name = "id", nullable = false)
     private FHIRFormDef fhirFormDef;  //@OneToMany(mappedBy = "fhirFormDef") in the other
 
     @Override
@@ -160,12 +160,12 @@ public class FHIRForm extends BaseOpenmrsData {
         this.response = response;
     }
 
-    public String getQuestionnaire_id() {
-        return questionnaire_id;
+    public String getQuestionnaireUrl() {
+        return questionnaireUrl;
     }
 
-    public void setQuestionnaire_id(String questionnaire_id) {
-        this.questionnaire_id = questionnaire_id;
+    public void setQuestionnaireUrl(String questionnaireUrl) {
+        this.questionnaireUrl = questionnaireUrl;
     }
 
     public String getStatus() {

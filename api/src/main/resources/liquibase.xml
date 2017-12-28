@@ -35,5 +35,59 @@
         <addForeignKeyConstraint constraintName="fhirform_item_owner_fk" baseTableName="fhirform_item" baseColumnNames="owner"  referencedTableName="users"
                                  referencedColumnNames="user_id" />
     </changeSet> -->
- 
+
+    <changeSet author="beapen" id="20171223-1">
+        <comment>Create the FhirForm Definition Table</comment>
+        <createTable tableName="FHIRFormDef">
+            <column autoIncrement="true" name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="uuid" type="char(38)"/>
+
+            <column name="created_by" type="char(38)"/>
+            <column name="deleted_by" type="char(38)"/>
+
+            <column name="created_on" type="datetime"/>
+            <column name="deleted_on" type="datetime"/>
+
+            <column name="formtype" type="char(10)"/>
+            <column name="status" type="char(10)"/>
+            <column name="version" type="char(25)"/>
+            <column name="questionnaireUrl" type="char(255)"/>
+            <column name="submissionUrl" type="char(255)"/>
+
+            <column name="comments" type="text"/>
+
+        </createTable>
+    </changeSet>
+
+    <changeSet author="beapen" id="20171223-2">
+        <comment>Create the FhirForm Instance Table</comment>
+        <createTable tableName="FHIRForm">
+            <column autoIncrement="true" name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="uuid" type="char(38)"/>
+            <column name="FHIRFormDef" type="int"/>
+
+            <column name="created_by" type="char(38)"/>
+            <column name="deleted_by" type="char(38)"/>
+            <column name="last_edited_by" type="char(38)"/>
+
+            <column name="created_on" type="datetime"/>
+            <column name="deleted_on" type="datetime"/>
+            <column name="last_edited_on" type="datetime"/>
+
+            <column name="submitted_by" type="char(38)"/>
+            <column name="submitted_on" type="datetime"/>
+            <column name="submissionUrl" type="char(255)"/>
+
+            <column name="patientId" type="char(38)"/>
+            <column name="status" type="char(10)"/>
+            <column name="response" type="longtext"/>
+            <column name="questionnaireUrl" type="char(255)"/>
+            <column name="comments" type="text"/>
+
+        </createTable>
+    </changeSet>
 </databaseChangeLog>
