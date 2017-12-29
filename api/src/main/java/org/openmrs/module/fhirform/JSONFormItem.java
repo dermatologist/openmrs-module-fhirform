@@ -9,9 +9,13 @@ import org.springframework.stereotype.Component;
 public class JSONFormItem {
 
     public String __type = "string";
+
     public String __title = "Title";
+
     public String[] __enum;
+
     public boolean __required = false;
+
     public String __default = "";
 
     public String get_type() {

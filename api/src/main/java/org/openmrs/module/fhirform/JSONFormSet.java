@@ -11,11 +11,17 @@ import java.util.ArrayList;
 @Component
 public class JSONFormSet {
 
-    public ArrayList<JSONFormItem> __items = new ArrayList<JSONFormItem>();
+    public ArrayList<JSONFormItem> __items;
+
     public String __type = "object";
+
     public String __title = "Title";
 
-    public ArrayList<JSONFormItem> get__items() {
+    JSONFormSet() {
+        __items = new ArrayList<JSONFormItem>();
+    }
+
+    public ArrayList<JSONFormItem> get_items() {
         return __items;
     }
 
@@ -27,6 +33,5 @@ public class JSONFormSet {
         Gson gson = new Gson();
         return gson.toJson(this).replace("__", "");
     }
-
 
 }

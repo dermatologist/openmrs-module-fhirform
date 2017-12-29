@@ -25,10 +25,10 @@ import static org.junit.Assert.*;
  * standardTestDataset.xml in openmrs-api. All test methods are executed in transactions, which are
  * rolled back by the end of each test method.
  */
-public class FHIRFormDaoTest extends BaseModuleContextSensitiveTest {
+public class FhirformDaoTest extends BaseModuleContextSensitiveTest {
 	
 	@Autowired
-	FHIRFormDao dao;
+	FhirformDao dao;
 	
 	@Autowired
 	UserService userService;

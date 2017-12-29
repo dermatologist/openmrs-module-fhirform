@@ -3,10 +3,7 @@ package org.openmrs.module.fhirform;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.InjectMocks;
-import org.openmrs.module.fhirform.api.impl.FHIRFormServiceImpl;
 import org.openmrs.test.BaseModuleContextSensitiveTest;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.junit.Assert.assertNotNull;
 
@@ -15,20 +12,20 @@ import static org.junit.Assert.assertNotNull;
  */
 public class FHIRHttpClientTest extends BaseModuleContextSensitiveTest {
 
-    @Autowired
     FHIRHttpClient fhirHttpClient;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
+        fhirHttpClient = new FHIRHttpClient();
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
     }
 
     @Test
-    public void getFHIRForm() throws Exception {
-        Object o = fhirHttpClient.getFHIRForm("", "144829", "10");
+    public void getFHIRForm() {
+        Object o = fhirHttpClient.getFhirform("", "144829", "10");
         assertNotNull(o);
         System.out.print(o);
     }

@@ -1,0 +1,18 @@
+[
+  {
+    "id": "fhir.fhirDashboard",
+    "description": "Dashboard for uploading images and listing existing FHIRForms",
+    "order": 898,
+    "requiredPrivilege": "App: fhir.fhirDashboard",
+    "extensions": [
+      {
+        "id": "fhir.fhirDashboardHomepageLink",
+        "extensionPointId": "org.openmrs.referenceapplication.homepageLink",
+        "type": "link",
+        "label": "FHIRForm Dashboard",
+        "url": "fhir/fhirDashboard.page?app=fhir.fhirDashboard",
+        "icon": "icon-pencil"
+      }
+    ]
+  }
+]

@@ -28,9 +28,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * This class configured as controller using annotation and mapped with the URL of
  * 'module/fhirform/fhirformLink.form'.
  */
-@Controller("${rootrootArtifactId}.FHIRFormController")
+@Controller("${rootrootArtifactId}.FhirformController")
 @RequestMapping(value = "module/fhirform/fhirform.form")
-public class FHIRFormController {
+public class FhirformController {
 	
 	/** Logger for this class and subclasses */
 	protected final Log log = LogFactory.getLog(getClass());
