@@ -1,5 +1,5 @@
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.openmrs.module</groupId>
@@ -9,8 +9,8 @@
 
 	<artifactId>fhirform-omod</artifactId>
 	<packaging>jar</packaging>
-	<name>FHIR Form OMOD</name>
-	<description>Omod submodule for FHIR Form</description>
+	<name>Fhirform OMOD</name>
+	<description>Omod submodule for Fhirform</description>
 
 	<dependencies>
         <dependency>
@@ -35,12 +35,6 @@
 			<artifactId>uiframework-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
-        <!--jsonpath added -->
-        <dependency>
-            <groupId>com.jayway.jsonpath</groupId>
-            <artifactId>json-path</artifactId>
-            <version>2.3.0</version>
-        </dependency>
 	</dependencies>
 
 	<build>
@@ -55,7 +49,6 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
 			</plugin>
-
 		</plugins>
 	</build>
 

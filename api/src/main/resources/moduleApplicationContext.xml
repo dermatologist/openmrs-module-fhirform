@@ -25,16 +25,16 @@
 
     <context:component-scan base-package="org.openmrs.module.fhirform" />
 
-    <!-- Wraps FHIRFormService methods in DB transactions and OpenMRS interceptors,
+    <!-- Wraps FhirformService methods in DB transactions and OpenMRS interceptors,
     which set audit info like dateCreated, changedBy, etc.-->
-    <bean id="fhirform.FHIRFormService"
+    <bean id="fhirform.FhirformService"
             class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
         <property name="transactionManager">
             <ref bean="transactionManager" />
         </property>
         <property name="target">
-            <bean class="org.openmrs.module.fhirform.api.impl.FHIRFormServiceImpl">
-                <property name="dao" ref="fhirform.FHIRFormDao" />
+            <bean class="org.openmrs.module.fhirform.api.impl.FhirformServiceImpl">
+                <property name="dao" ref="fhirform.FhirformDao" />
             </bean>
         </property>
         <property name="preInterceptors">
@@ -45,13 +45,13 @@
         </property>
     </bean>
 
-    <!-- Adds FHIRFormService to OpenMRS context so it can be accessed
-    calling Context.getService(FHIRFormService.class) -->
+    <!-- Adds FhirformService to OpenMRS context so it can be accessed
+    calling Context.getService(FhirformService.class) -->
     <bean parent="serviceContext">
         <property name="moduleService">
             <list>
-                <value>org.openmrs.module.fhirform.api.FHIRFormService</value>
-                <ref bean="fhirform.FHIRFormService" />
+                <value>org.openmrs.module.fhirform.api.FhirformService</value>
+                <ref bean="fhirform.FhirformService" />
             </list>
         </property>
     </bean>
