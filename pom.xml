@@ -14,13 +14,24 @@
 	<packaging>pom</packaging>
 	<name>Fhirform</name>
 	<description>FHIR Questionnaire rendering module.</description>
+    <developers>
+        <developer>
+            <name>B Eapen - Nuchange.com</name>
+        </developer>
+    </developers>
+
+    <organization>
+        <name>OpenMRS</name>
+        <url>http://openmrs.org</url>
+    </organization>
 
 	<url>https://wiki.openmrs.org/x/FQ4z</url>
 
 	<scm>
-		<connection>scm:git:git@github.com:openmrs/openmrs-module-fhirform.git</connection>
-		<developerConnection>scm:git:git@github.com:openmrs/openmrs-module-fhirform.git</developerConnection>
-		<url>https://github.com/openmrs/openmrs-module-fhirform/</url>
+        <connection>scm:git:github_public@gulfdoctor.net:dermatologist/openmrs-module-fhirform.git</connection>
+        <developerConnection>scm:git:github_public@gulfdoctor.net:dermatologist/openmrs-module-fhirform.git
+        </developerConnection>
+        <url>https://github.com/dermatologist/openmrs-module-fhirform/</url>
 	</scm>
 
 	<modules>
