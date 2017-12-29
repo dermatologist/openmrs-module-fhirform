@@ -4,7 +4,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openmrs.test.BaseModuleContextSensitiveTest;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.junit.Assert.assertNotNull;
 
@@ -13,11 +12,11 @@ import static org.junit.Assert.assertNotNull;
  */
 public class FHIRHttpClientTest extends BaseModuleContextSensitiveTest {
 
-    @Autowired
     FHIRHttpClient fhirHttpClient;
 
     @Before
     public void setUp() {
+        fhirHttpClient = new FHIRHttpClient();
     }
 
     @After

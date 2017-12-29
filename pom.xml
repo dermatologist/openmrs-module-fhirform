@@ -39,7 +39,20 @@
 		<module>omod</module>
 	</modules>
 
-	<dependencyManagement>
+    <properties>
+        <!--
+        <openmrsPlatformVersion>1.11.6</openmrsPlatformVersion>
+        <uiframeworkVersion>3.11.0</uiframeworkVersion>
+        <appframeworkVersion>2.10.0</appframeworkVersion>
+        <uicommonsModuleVersion>2.3.0</uicommonsModuleVersion>
+        <emrapiVersion>1.3</emrapiVersion>
+        <appuiVersion>1.8.0</appuiVersion>
+        -->
+        <openmrsPlatformVersion>1.11.6</openmrsPlatformVersion>
+        <hapiFhirBaseVersion>3.1.0</hapiFhirBaseVersion>
+    </properties>
+
+    <dependencyManagement>
 		<dependencies>
 			<!-- Importing versions from refapp distro -->
             <dependency>
@@ -49,20 +62,51 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <!-- Required to avoid SLF4J conflict -->
             <dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>slf4j-api</artifactId>
-				<version>1.7.25</version>
-				<scope>provided</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>slf4j-jdk14</artifactId>
-				<version>1.7.25</version>
-				<scope>provided</scope>
-			</dependency>
-		</dependencies>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>3.5</version>
+            </dependency>
+            <dependency>
+                <groupId>ca.uhn.hapi.fhir</groupId>
+                <artifactId>hapi-fhir-base</artifactId>
+                <version>${hapiFhirBaseVersion}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-api</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>jcl-over-slf4j</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>log4j</groupId>
+                        <artifactId>log4j</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>ca.uhn.hapi.fhir</groupId>
+                <artifactId>hapi-fhir-structures-dstu3</artifactId>
+                <version>${hapiFhirBaseVersion}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-api</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>jcl-over-slf4j</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>log4j</groupId>
+                        <artifactId>log4j</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+        </dependencies>
 	</dependencyManagement>
 
 	<repositories>
@@ -89,7 +133,4 @@
 		</pluginRepository>
 	</pluginRepositories>
 
-	<properties>
-		<openmrsPlatformVersion>1.11.6</openmrsPlatformVersion>
-	</properties>
 </project>

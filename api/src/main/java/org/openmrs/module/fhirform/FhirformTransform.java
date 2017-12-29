@@ -4,16 +4,13 @@ import ca.uhn.fhir.context.FhirContext;
 import ca.uhn.fhir.parser.IParser;
 import org.hl7.fhir.dstu3.model.Questionnaire;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 /**
  * Created by beapen on 05/12/2017.
  */
-@Component
 public class FhirformTransform {
 
-    @Autowired
-    public FHIRHttpClient fhirHttpClient;
+    public FHIRHttpClient fhirHttpClient = new FHIRHttpClient();
 
     FhirContext ctxDstu3 = FhirContext.forDstu3();
 

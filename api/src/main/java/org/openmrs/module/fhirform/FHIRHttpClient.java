@@ -13,13 +13,11 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.openmrs.api.AdministrationService;
 import org.openmrs.api.context.Context;
-import org.springframework.stereotype.Component;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.Response;
 
-@Component
 public class FHIRHttpClient {
 
     private static Log log = LogFactory.getLog(FHIRHttpClient.class);
