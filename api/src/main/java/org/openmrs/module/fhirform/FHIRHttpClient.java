@@ -17,7 +17,8 @@ import org.openmrs.api.context.Context;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.Response;
-
+// Cannot use @component annotation as openmrs freezes on installation
+// TODO: Find root cause and rectify this
 public class FHIRHttpClient {
 
     private static Log log = LogFactory.getLog(FHIRHttpClient.class);

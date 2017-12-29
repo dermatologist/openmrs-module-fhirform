@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 /**
  * Created by beapen on 05/12/2017.
  */
+// Cannot use @component annotation as openmrs freezes on installation
+// TODO: Find root cause and rectify this
 public class FhirformTransform {
 
     public FHIRHttpClient fhirHttpClient = new FHIRHttpClient();
