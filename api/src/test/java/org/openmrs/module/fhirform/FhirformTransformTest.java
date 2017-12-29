@@ -4,7 +4,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openmrs.test.BaseModuleContextSensitiveTest;
-import org.springframework.beans.factory.annotation.Autowired;
 
 public class FhirformTransformTest extends BaseModuleContextSensitiveTest {
 
@@ -17,12 +16,12 @@ public class FhirformTransformTest extends BaseModuleContextSensitiveTest {
     //    @Mock
     //    UserService userService;
 
-    @Autowired
     FhirformTransform fhirFormTransform;
 
 
     @Before
     public void setUp() {
+        fhirFormTransform = new FhirformTransform();
     }
 
     @After
@@ -31,8 +30,7 @@ public class FhirformTransformTest extends BaseModuleContextSensitiveTest {
 
     @Test
     public void getJsonForm() {
-        String q = fhirFormTransform.getJsonForm("https://fhirtest.uhn.ca/baseDstu3/Questionnaire/", "SMART-PROMs-QUE2",
-                "154");
+        String q = fhirFormTransform.getJsonForm("", "144829", "10");
         System.out.print(q);
 
     }

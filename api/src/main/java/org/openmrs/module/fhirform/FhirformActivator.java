@@ -9,29 +9,27 @@
  */
 package org.openmrs.module.fhirform;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.openmrs.module.BaseModuleActivator;
 
 /**
  * This class contains the logic that is run every time this module is either started or shutdown
  */
 public class FhirformActivator extends BaseModuleActivator {
-	
-	private Log log = LogFactory.getLog(this.getClass());
+
+    //private Log log = LogFactory.getLog(this.getClass());
 	
 	/**
 	 * @see #started()
 	 */
 	public void started() {
-		log.info("Started Fhirform");
+        //log.info("Started Fhirform");
 	}
 	
 	/**
 	 * @see #shutdown()
 	 */
 	public void shutdown() {
-		log.info("Shutdown Fhirform");
+        //log.info("Shutdown Fhirform");
 	}
 	
 }
