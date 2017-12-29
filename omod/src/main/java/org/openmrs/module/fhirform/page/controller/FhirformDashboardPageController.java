@@ -2,6 +2,7 @@ package org.openmrs.module.fhirform.page.controller;
 
 import org.openmrs.User;
 import org.openmrs.api.context.Context;
+import org.openmrs.module.fhirform.FhirformConstants;
 import org.openmrs.module.fhirform.FhirformDef;
 import org.openmrs.module.fhirform.api.FhirformService;
 import org.openmrs.ui.framework.SimpleObject;
@@ -11,29 +12,15 @@ import org.springframework.expression.EvaluationException;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.io.File;
 import java.util.Calendar;
 
 public class FhirformDashboardPageController {
 
     public void controller(PageModel model) throws EvaluationException {
-        String sep = File.separator;
         FhirformService fhirFormService = Context.getService(FhirformService.class);
 
-        // Get all the questionnaire names in a server
-        //        File imgDir = new File(OpenmrsUtil.getApplicationDataDirectory() +
-        //                sep + "nuform" + sep);
-        //
-        //        if (!imgDir.exists()) {
-        //            FileUtils.forceMkdir(imgDir);
-        //        }
-
-        //		ArrayList<String> fileNames = new ArrayList<String>(Arrays.asList(imgDir.list()));
-        //		model.addAttribute("folder", imgDir);
-        //		model.addAttribute("listOfFiles", fileNames);
-        //		model.addAttribute("numberOfFiles", fileNames.size());
-        //		model.addAttribute("FhirfORM_CONSTANTS", FhirformConstants.NUFORM_CONSTANTS());
-        //		model.addAttribute("nuformdefs", fhirFormService.getAllDef(FhirformConstants.GENERALFORM));
+        model.addAttribute("FhirfORM_CONSTANTS", FhirformConstants.NUFORM_CONSTANTS());
+        model.addAttribute("nuformdefs", fhirFormService.getAllDef(FhirformConstants.GENERALFORM));
     }
 
     public String post(@RequestParam("formtype") String formtype,
