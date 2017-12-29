@@ -3,7 +3,6 @@ package org.openmrs.module.fhirform;
 import ca.uhn.fhir.context.FhirContext;
 import ca.uhn.fhir.parser.IParser;
 import org.hl7.fhir.dstu3.model.Questionnaire;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Created by beapen on 05/12/2017.
@@ -18,17 +17,15 @@ public class FhirformTransform {
 
     private JSONFormItem jsonFormItem;
 
-    @Autowired
-    private JSONFormSet jsonFormSet;
+    private JSONFormSet jsonFormSet = new JSONFormSet();
 
-    @Autowired
-    private JSONForm jsonForm;
+    private JSONForm jsonForm = new JSONForm();
 
     private String formID;
 
     private String version;
 
-    private String questionnaireUrl;
+    private String questionnaireUrl = FhirformConstants.GLOBALPROPERTY_FHIRFORM_DEFAULT_BASEURL;
 
     public String getJsonForm(String url, String formID, String version) {
         if (!url.isEmpty())
