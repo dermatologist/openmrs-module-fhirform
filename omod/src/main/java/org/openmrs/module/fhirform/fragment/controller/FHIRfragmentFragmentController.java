@@ -1,4 +1,3 @@
 package org.openmrs.module.fhirform.fragment.controller;
 
-public class FHIRfragmentFragmentController {
-}
+public class FHIRfragmentFragmentController {}

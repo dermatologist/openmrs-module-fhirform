@@ -14,23 +14,23 @@ import static org.junit.Assert.assertNotNull;
  * Created by beapen on 05/12/2017.
  */
 public class FHIRHttpClientTest extends BaseModuleContextSensitiveTest {
-
-    @Autowired
-    FHIRHttpClient fhirHttpClient;
-
-    @Before
-    public void setUp() throws Exception {
-    }
-
-    @After
-    public void tearDown() throws Exception {
-    }
-
-    @Test
-    public void getFHIRForm() throws Exception {
-        Object o = fhirHttpClient.getFHIRForm("", "144829", "10");
-        assertNotNull(o);
-        System.out.print(o);
-    }
-
+	
+	@Autowired
+	FHIRHttpClient fhirHttpClient;
+	
+	@Before
+	public void setUp() throws Exception {
+	}
+	
+	@After
+	public void tearDown() throws Exception {
+	}
+	
+	@Test
+	public void getFHIRForm() throws Exception {
+		Object o = fhirHttpClient.getFHIRForm("", "144829", "10");
+		assertNotNull(o);
+		System.out.print(o);
+	}
+	
 }

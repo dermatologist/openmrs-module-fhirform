@@ -24,101 +24,70 @@ import java.util.List;
 @SuppressWarnings("JpaQlInspection")
 @Repository("fhirform.FHIRFormDao")
 public class FHIRFormDao {
-
-    @Autowired
-    DbSessionFactory sessionFactory;
-
-    private DbSession getSession() {
-        return sessionFactory.getCurrentSession();
-    }
-
-    public Item getItemByUuid(String uuid) {
-        return (Item) getSession().createCriteria(Item.class).add(Restrictions.eq("uuid", uuid)).uniqueResult();
-    }
-
-    public Item saveItem(Item item) {
-        getSession().saveOrUpdate(item);
-        return item;
-    }
-
-    // REF: http://levelup.lishman.com/spring/hibernate-orm/quick-start.php
-
-    public List getAllDef(String formtype) {
-        if (formtype.isEmpty())
-            return getSession()
-                    .createCriteria(FHIRFormDef.class)
-                    .list();
-        return getSession()
-                .createCriteria(FHIRFormDef.class)
-                .add(Restrictions.eq("formtype", formtype))
-                .list();
-
-    }
-
-
-    public List getAllFHIRForms(String status) {
-        if (status.isEmpty())
-            return getSession()
-                    .createCriteria(FHIRForm.class)
-                    .list();
-        return getSession()
-                .createCriteria(FHIRForm.class)
-                .add(Restrictions.eq("status", status))
-                .list();
-    }
-
-
-    public List getAllFHIRFormsByDef(FHIRFormDef FHIRFormDef) {
-        return getSession()
-                .createCriteria(FHIRForm.class)
-                .add(Restrictions.eq("FHIRFormDef", FHIRFormDef))
-                .list();
-    }
-
-    public List getAllFHIRFormsByPatient(Patient patient) {
-        return getSession()
-                .createCriteria(FHIRForm.class)
-                .add(Restrictions.eq("patient", patient))
-                .list();
-    }
-
-
-    public FHIRForm getFHIRFormById(int id) {
-        return (FHIRForm) getSession()
-                .createCriteria(FHIRForm.class)
-                .add(Restrictions.eq("id", id))
-                .uniqueResult();
-    }
-
-
-    public FHIRFormDef getFHIRFormDefById(int id) {
-        return (FHIRFormDef) getSession()
-                .createCriteria(FHIRFormDef.class)
-                .add(Restrictions.eq("id", id))
-                .uniqueResult();
-    }
-
-
-    public FHIRForm saveFHIRForm(FHIRForm FHIRForm) {
-        getSession().saveOrUpdate(FHIRForm);
-        return FHIRForm;
-    }
-
-
-    public void purgeFHIRForm(FHIRForm FHIRForm) {
-        getSession().delete(FHIRForm);
-    }
-
-
-    public FHIRFormDef saveFHIRFormDef(FHIRFormDef FHIRFormDef) {
-        getSession().saveOrUpdate(FHIRFormDef);
-        return FHIRFormDef;
-    }
-
-
-    public void purgeFHIRFormDef(FHIRFormDef FHIRFormDef) {
-        getSession().delete(FHIRFormDef);
-    }
-
-
+	
+	@Autowired
+	DbSessionFactory sessionFactory;
+	
+	private DbSession getSession() {
+		return sessionFactory.getCurrentSession();
+	}
+	
+	public Item getItemByUuid(String uuid) {
+		return (Item) getSession().createCriteria(Item.class).add(Restrictions.eq("uuid", uuid)).uniqueResult();
+	}
+	
+	public Item saveItem(Item item) {
+		getSession().saveOrUpdate(item);
+		return item;
+	}
+	
+	// REF: http://levelup.lishman.com/spring/hibernate-orm/quick-start.php
+	
+	public List getAllDef(String formtype) {
+		if (formtype.isEmpty())
+			return getSession().createCriteria(FHIRFormDef.class).list();
+		return getSession().createCriteria(FHIRFormDef.class).add(Restrictions.eq("formtype", formtype)).list();
+		
+	}
+	
+	public List getAllFHIRForms(String status) {
+		if (status.isEmpty())
+			return getSession().createCriteria(FHIRForm.class).list();
+		return getSession().createCriteria(FHIRForm.class).add(Restrictions.eq("status", status)).list();
+	}
+	
+	public List getAllFHIRFormsByDef(FHIRFormDef FHIRFormDef) {
+		return getSession().createCriteria(FHIRForm.class).add(Restrictions.eq("FHIRFormDef", FHIRFormDef)).list();
+	}
+	
+	public List getAllFHIRFormsByPatient(Patient patient) {
+		return getSession().createCriteria(FHIRForm.class).add(Restrictions.eq("patient", patient)).list();
+	}
+	
+	public FHIRForm getFHIRFormById(int id) {
+		return (FHIRForm) getSession().createCriteria(FHIRForm.class).add(Restrictions.eq("id", id)).uniqueResult();
+	}
+	
+	public FHIRFormDef getFHIRFormDefById(int id) {
+		return (FHIRFormDef) getSession().createCriteria(FHIRFormDef.class).add(Restrictions.eq("id", id)).uniqueResult();
+	}
+	
+	public FHIRForm saveFHIRForm(FHIRForm FHIRForm) {
+		getSession().saveOrUpdate(FHIRForm);
+		return FHIRForm;
+	}
+	
+	public void purgeFHIRForm(FHIRForm FHIRForm) {
+		getSession().delete(FHIRForm);
+	}
+	
+	public FHIRFormDef saveFHIRFormDef(FHIRFormDef FHIRFormDef) {
+		getSession().saveOrUpdate(FHIRFormDef);
+		return FHIRFormDef;
+	}
+	
+	public void purgeFHIRFormDef(FHIRFormDef FHIRFormDef) {
+		getSession().delete(FHIRFormDef);
+	}
+	
 }

@@ -9,8 +9,8 @@
  */
 package org.openmrs.module.fhirform;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+//import org.apache.commons.logging.Log;
+//import org.apache.commons.logging.LogFactory;
 import org.openmrs.module.BaseModuleActivator;
 
 /**
@@ -18,20 +18,20 @@ import org.openmrs.module.BaseModuleActivator;
  */
 public class FHIRFormActivator extends BaseModuleActivator {
 	
-	private Log log = LogFactory.getLog(this.getClass());
+	//private static Log log = LogFactory.getLog(FHIRFormActivator.class);
 	
 	/**
 	 * @see #started()
 	 */
 	public void started() {
-		log.info("Started FHIR Form");
+		//log.info("Started FHIRForm");
 	}
 	
 	/**
 	 * @see #shutdown()
 	 */
 	public void shutdown() {
-		log.info("Shutdown FHIR Form");
+		//log.info("Shutdown FHIRForm");
 	}
 	
 }

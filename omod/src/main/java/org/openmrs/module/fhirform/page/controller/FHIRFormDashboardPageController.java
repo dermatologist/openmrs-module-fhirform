@@ -21,49 +21,47 @@ import java.util.Arrays;
 import java.util.Calendar;
 
 public class FHIRFormDashboardPageController {
-    public void controller(PageModel model) throws EvaluationException, IOException {
-        String sep = File.separator;
-        FHIRFormService fhirFormService = Context.getService(FHIRFormService.class);
-
-        // Get all the questionnaire names in a server
-//        File imgDir = new File(OpenmrsUtil.getApplicationDataDirectory() +
-//                sep + "nuform" + sep);
-//
-//        if (!imgDir.exists()) {
-//            FileUtils.forceMkdir(imgDir);
-//        }
-
-
-        ArrayList<String> fileNames = new ArrayList<String>(Arrays.asList(imgDir.list()));
-        model.addAttribute("folder", imgDir);
-        model.addAttribute("listOfFiles", fileNames);
-        model.addAttribute("numberOfFiles", fileNames.size());
-        model.addAttribute("FHIRFORM_CONSTANTS", FHIRFormConstants.NUFORM_CONSTANTS());
-        model.addAttribute("nuformdefs", fhirFormService.getAllDef(FHIRFormConstants.GENERALFORM));
-    }
-
-    public String post(@RequestParam("formtype") String formtype,
-                       @RequestParam(required = false, value = "backgroundImage", defaultValue = "") String backgroundImage,
-                       @RequestParam(required = false, value = "comment", defaultValue = "") String comment,
-                       Errors errors,
-                       UiUtils ui) {
-
-        NuformDef nuformDef = new NuformDef();
-        User user = Context.getAuthenticatedUser();
-        Calendar cal = Calendar.getInstance();
-        nuformDef.setCreated_by(user.toString());
-        nuformDef.setCreated_on(cal.getTime());
-        nuformDef.setFormtype(formtype);
-        nuformDef.setBackgroundImage(backgroundImage);
-        nuformDef.setStatus(NuformConstants.ACTIVE);
-        nuformDef.setComments(comment);
-        NuformService nuformService = Context.getService(NuformService.class);
-        NuformDef saved = nuformService.saveNuformDef(nuformDef);
-        SimpleObject redirectParams = new SimpleObject();
-        if (saved.getId() != null)
-            redirectParams.put("savedId", saved.getId());
-        else
-            redirectParams.put("savedId", 0);
-        return "redirect:" + ui.pageLink("nuform", "nuformDashboard", redirectParams);
-    }
+	
+	public void controller(PageModel model) throws EvaluationException, IOException {
+		String sep = File.separator;
+		FHIRFormService fhirFormService = Context.getService(FHIRFormService.class);
+		
+		// Get all the questionnaire names in a server
+		//        File imgDir = new File(OpenmrsUtil.getApplicationDataDirectory() +
+		//                sep + "nuform" + sep);
+		//
+		//        if (!imgDir.exists()) {
+		//            FileUtils.forceMkdir(imgDir);
+		//        }
+		
+		//		ArrayList<String> fileNames = new ArrayList<String>(Arrays.asList(imgDir.list()));
+		//		model.addAttribute("folder", imgDir);
+		//		model.addAttribute("listOfFiles", fileNames);
+		//		model.addAttribute("numberOfFiles", fileNames.size());
+		//		model.addAttribute("FHIRFORM_CONSTANTS", FHIRFormConstants.NUFORM_CONSTANTS());
+		//		model.addAttribute("nuformdefs", fhirFormService.getAllDef(FHIRFormConstants.GENERALFORM));
+	}
+	
+	public String post(@RequestParam("formtype") String formtype,
+	        @RequestParam(required = false, value = "backgroundImage", defaultValue = "") String backgroundImage,
+	        @RequestParam(required = false, value = "comment", defaultValue = "") String comment, Errors errors, UiUtils ui) {
+		
+		FHIRFormDef nuformDef = new FHIRFormDef();
+		User user = Context.getAuthenticatedUser();
+		Calendar cal = Calendar.getInstance();
+		nuformDef.setCreated_by(user.toString());
+		nuformDef.setCreated_on(cal.getTime());
+		nuformDef.setFormtype(formtype);
+		//		nuformDef.setBackgroundImage(backgroundImage);
+		//		nuformDef.setStatus(NuformConstants.ACTIVE);
+		nuformDef.setComments(comment);
+		FHIRFormService nuformService = Context.getService(FHIRFormService.class);
+		FHIRFormDef saved = nuformService.saveFHIRFormDef(nuformDef);
+		SimpleObject redirectParams = new SimpleObject();
+		if (saved.getId() != null)
+			redirectParams.put("savedId", saved.getId());
+		else
+			redirectParams.put("savedId", 0);
+		return "redirect:" + ui.pageLink("nuform", "nuformDashboard", redirectParams);
+	}
 }
