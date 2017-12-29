@@ -9,10 +9,9 @@ import java.util.Set;
 /**
  * Created by beapen on 01/11/2017.
  */
-@Entity(name = "fhirform.FHIRFormDef")
-@Table(name = "FHIRFormDef")
-public class FHIRFormDef extends BaseOpenmrsData {
-
+@Entity(name = "FhirformDef")
+@Table(name = "FhirformDef")
+public class FhirformDef extends BaseOpenmrsData {
 
     @Id
     @GeneratedValue
@@ -41,8 +40,8 @@ public class FHIRFormDef extends BaseOpenmrsData {
 
     private String submissionUrl;
 
-    @OneToMany(mappedBy = "FHIRFormDef")
-    private Set<FHIRForm> fhirforms;
+    @OneToMany(mappedBy = "FhirformDef")
+    private Set<Fhirform> fhirforms;
 
     @Override
     public Integer getId() {
@@ -137,11 +136,11 @@ public class FHIRFormDef extends BaseOpenmrsData {
         this.submissionUrl = submissionUrl;
     }
 
-    public Set<FHIRForm> getFhirforms() {
+    public Set<Fhirform> getFhirforms() {
         return fhirforms;
     }
 
-    public void setFhirforms(Set<FHIRForm> fhirforms) {
+    public void setFhirforms(Set<Fhirform> fhirforms) {
         this.fhirforms = fhirforms;
     }
 

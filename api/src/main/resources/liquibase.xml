@@ -12,8 +12,8 @@
         See http://www.liquibase.org/manual/home#available_database_refactorings
         for a list of supported elements and attributes
     -->
- 
- 	<!-- Uncomment the changeset below if you want to make the Item class persistable, see also Item and FHIRFormDaoTest -->
+
+    <!-- Uncomment the changeset below if you want to make the Item class persistable, see also Item and FhirformDaoTest -->
  	<!--
 	<changeSet id="fhirform-2016-08-02-12-21" author="raff">
 		<preConditions onFail="MARK_RAN">
@@ -36,9 +36,9 @@
                                  referencedColumnNames="user_id" />
     </changeSet> -->
 
-    <changeSet author="beapen" id="20171223-1">
-        <comment>Create the FhirForm Definition Table</comment>
-        <createTable tableName="FHIRFormDef">
+    <changeSet author="beapen" id="20171225-1">
+        <comment>Create the Fhirform Definition Table</comment>
+        <createTable tableName="FhirformDef">
             <column autoIncrement="true" name="id" type="int">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
@@ -61,14 +61,14 @@
         </createTable>
     </changeSet>
 
-    <changeSet author="beapen" id="20171223-2">
-        <comment>Create the FhirForm Instance Table</comment>
-        <createTable tableName="FHIRForm">
+    <changeSet author="beapen" id="20171225-2">
+        <comment>Create the Fhirform Instance Table</comment>
+        <createTable tableName="Fhirform">
             <column autoIncrement="true" name="id" type="int">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="uuid" type="char(38)"/>
-            <column name="FHIRFormDef" type="int"/>
+            <column name="FhirformDef" type="int"/>
 
             <column name="created_by" type="char(38)"/>
             <column name="deleted_by" type="char(38)"/>

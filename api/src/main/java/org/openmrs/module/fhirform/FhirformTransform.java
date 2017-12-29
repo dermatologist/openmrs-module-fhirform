@@ -4,16 +4,15 @@ import ca.uhn.fhir.context.FhirContext;
 import ca.uhn.fhir.parser.IParser;
 import org.hl7.fhir.dstu3.model.Questionnaire;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 /**
  * Created by beapen on 05/12/2017.
  */
-@Component
-public class FHIRFormTransform {
+// Cannot use @component annotation as openmrs freezes on installation
+// TODO: Find root cause and rectify this
+public class FhirformTransform {
 
-    @Autowired
-    public FHIRHttpClient fhirHttpClient;
+    public FHIRHttpClient fhirHttpClient = new FHIRHttpClient();
 
     FhirContext ctxDstu3 = FhirContext.forDstu3();
 
@@ -26,9 +25,10 @@ public class FHIRFormTransform {
     private JSONForm jsonForm;
 
     private String formID;
-    private String version;
-    private String questionnaireUrl;
 
+    private String version;
+
+    private String questionnaireUrl;
 
     public String getJsonForm(String url, String formID, String version) {
         if (!url.isEmpty())
@@ -37,7 +37,7 @@ public class FHIRFormTransform {
             this.formID = formID;
         if (!version.isEmpty())
             this.version = version;
-        Object o = fhirHttpClient.getFHIRForm(this.questionnaireUrl, this.formID, this.version);
+        Object o = fhirHttpClient.getFhirform(this.questionnaireUrl, this.formID, this.version);
         IParser parser = ctxDstu3.newJsonParser();
         Questionnaire q = parser.parseResource(Questionnaire.class, o.toString());
         for (Questionnaire.QuestionnaireItemComponent i : q.getItem()) {

@@ -13,14 +13,12 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.openmrs.api.AdministrationService;
 import org.openmrs.api.context.Context;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.Response;
-
-@Component
+// Cannot use @component annotation as openmrs freezes on installation
+// TODO: Find root cause and rectify this
 public class FHIRHttpClient {
 
     private static Log log = LogFactory.getLog(FHIRHttpClient.class);
@@ -28,28 +26,31 @@ public class FHIRHttpClient {
     private AdministrationService administrationService;
 
     private String baseUrl;
+
     private String userName;
+
     private String password;
 
     private String protocol = "GET";
+
     private String urlString;
 
     public FHIRHttpClient() {
         try {
             administrationService = Context.getAdministrationService();
-            baseUrl = administrationService.getGlobalProperty(FHIRFormConstants.GLOBALPROPERTY_FHIRFORM_BASEURL,
-                    FHIRFormConstants.GLOBALPROPERTY_FHIRFORM_DEFAULT_BASEURL);
-            userName = administrationService.getGlobalProperty(FHIRFormConstants.GLOBALPROPERTY_FHIRFORM_USERNAME,
-                    FHIRFormConstants.GLOBALPROPERTY_FHIRFORM_DEFAULT_USERNAME);
-            password = administrationService.getGlobalProperty(FHIRFormConstants.GLOBALPROPERTY_FHIRFORM_PASSWORD,
-                    FHIRFormConstants.GLOBALPROPERTY_FHIRFORM_DEFAULT_PASSWORD);
+            baseUrl = administrationService.getGlobalProperty(FhirformConstants.GLOBALPROPERTY_FHIRFORM_BASEURL,
+                    FhirformConstants.GLOBALPROPERTY_FHIRFORM_DEFAULT_BASEURL);
+            userName = administrationService.getGlobalProperty(FhirformConstants.GLOBALPROPERTY_FHIRFORM_USERNAME,
+                    FhirformConstants.GLOBALPROPERTY_FHIRFORM_DEFAULT_USERNAME);
+            password = administrationService.getGlobalProperty(FhirformConstants.GLOBALPROPERTY_FHIRFORM_PASSWORD,
+                    FhirformConstants.GLOBALPROPERTY_FHIRFORM_DEFAULT_PASSWORD);
         } catch (Exception e) {
             // For testing
-            baseUrl = FHIRFormConstants.GLOBALPROPERTY_FHIRFORM_DEFAULT_BASEURL;
+            baseUrl = FhirformConstants.GLOBALPROPERTY_FHIRFORM_DEFAULT_BASEURL;
         }
     }
 
-    public JSONObject getFHIRForm(String Url, String formID, String version) {
+    public JSONObject getFhirform(String Url, String formID, String version) {
         if (Url == "")
             this.urlString = baseUrl + formID + "/_history/" + version;
         else
@@ -57,10 +58,10 @@ public class FHIRHttpClient {
         this.protocol = "GET";
         JSONObject jsonObject = new JSONObject();
         Object returnGet = get();
-        if (returnGet instanceof JSONArray || returnGet == null)  // If not found, returns an empty array
+        if (returnGet instanceof JSONArray || returnGet == null) // If not found, returns an empty array
             return jsonObject;
         else
-            return (JSONObject) returnGet;   // If found returns an object.
+            return (JSONObject) returnGet; // If found returns an object.
     }
 
     public Object get() {
@@ -83,6 +84,5 @@ public class FHIRHttpClient {
         }
         return responseObject;
     }
-
 
 }

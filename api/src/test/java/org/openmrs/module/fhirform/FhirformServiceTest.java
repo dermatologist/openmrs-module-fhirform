@@ -7,7 +7,7 @@
  * Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS
  * graphic logo is a trademark of OpenMRS Inc.
  */
-package org.openmrs.module.fhirform;
+package org.openmrs.module.fhirform.api;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -16,25 +16,24 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.openmrs.User;
 import org.openmrs.api.UserService;
-import org.openmrs.module.fhirform.api.dao.FHIRFormDao;
-import org.openmrs.module.fhirform.api.impl.FHIRFormServiceImpl;
-
-import static org.hamcrest.Matchers.hasProperty;
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.when;
+import org.openmrs.module.fhirform.Item;
+import org.openmrs.module.fhirform.api.dao.FhirformDao;
+import org.openmrs.module.fhirform.api.impl.FhirformServiceImpl;
+import static org.mockito.Mockito.*;
+import static org.hamcrest.Matchers.*;
+import static org.junit.Assert.*;
 
 /**
- * This is a unit test, which verifies logic in FHIRFormService. It doesn't extend
+ * This is a unit test, which verifies logic in FhirformService. It doesn't extend
  * BaseModuleContextSensitiveTest, thus it is run without the in-memory DB and Spring context.
  */
-public class FHIRFormServiceTest {
+public class FhirformServiceTest {
 	
 	@InjectMocks
-	FHIRFormServiceImpl basicModuleService;
+	FhirformServiceImpl basicModuleService;
 	
 	@Mock
-	FHIRFormDao dao;
+	FhirformDao dao;
 	
 	@Mock
 	UserService userService;

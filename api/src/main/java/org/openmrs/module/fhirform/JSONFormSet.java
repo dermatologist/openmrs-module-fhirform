@@ -12,7 +12,9 @@ import java.util.ArrayList;
 public class JSONFormSet {
 
     public ArrayList<JSONFormItem> __items;
+
     public String __type = "object";
+
     public String __title = "Title";
 
     JSONFormSet() {
@@ -23,7 +25,6 @@ public class JSONFormSet {
         return __items;
     }
 
-
     public void add_item(JSONFormItem __item) {
         this.__items.add(__item);
     }
@@ -32,6 +33,5 @@ public class JSONFormSet {
         Gson gson = new Gson();
         return gson.toJson(this).replace("__", "");
     }
-
 
 }

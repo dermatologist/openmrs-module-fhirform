@@ -14,8 +14,8 @@ import org.springframework.stereotype.Component;
 /**
  * Contains module's config.
  */
-@Component("fhirform.FHIRFormConfig")
-public class FHIRFormConfig {
+@Component("fhirform.FhirformConfig")
+public class FhirformConfig {
 	
-	public final static String MODULE_PRIVILEGE = "FHIR Form Privilege";
+	public final static String MODULE_PRIVILEGE = "Fhirform Privilege";
 }
