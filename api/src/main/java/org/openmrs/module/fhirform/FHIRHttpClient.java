@@ -21,7 +21,7 @@ import javax.ws.rs.core.Response;
 // TODO: Find root cause and rectify this
 public class FHIRHttpClient {
 
-    private static Log log = LogFactory.getLog(FHIRHttpClient.class);
+    private Log log = LogFactory.getLog(this.getClass());
 
     private AdministrationService administrationService;
 
