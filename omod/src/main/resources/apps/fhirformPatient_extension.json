@@ -1,0 +1,11 @@
+[
+  {
+    // adds fhir section to patient dashboard
+    "id": "fhir.patient.dashboard",
+    "extensionPointId": "patientDashboard.secondColumnFragments",
+    "extensionParams": {
+      "provider": "fhir",
+      "fragment": "fhirfragment"
+    }
+  }
+]
