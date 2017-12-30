@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class JsonObjectItem {
     private String __type = "object";
     private String __title = "";
-    private ArrayList<JsonObjectProperty> __properties;
+    private ArrayList<JsonObjectProperty> __properties = new ArrayList<JsonObjectProperty>();
 
     public String get__type() {
         return __type;

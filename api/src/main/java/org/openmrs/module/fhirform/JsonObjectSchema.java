@@ -8,7 +8,7 @@ public class JsonObjectSchema {
 
     private String __type = "array";
 
-    private ArrayList<JsonObjectItem> __items;
+    private ArrayList<JsonObjectItem> __items = new ArrayList<JsonObjectItem>();
 
     public String get__type() {
         return __type;

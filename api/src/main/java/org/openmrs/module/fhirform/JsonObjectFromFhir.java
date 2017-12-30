@@ -1,14 +1,18 @@
 package org.openmrs.module.fhirform;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import org.openmrs.module.fhirform.api.impl.CollectionAdapter;
 
-public class JsonObject {
+import java.util.Collection;
 
-    private JsonObjectSchema __schema;
+public class JsonObjectFromFhir {
 
-    private JsonObjectForm __form;
+    private JsonObjectSchema __schema = new JsonObjectSchema();
 
-    private JsonObjectFunction __onSubmitValid;
+    private JsonObjectForm __form = new JsonObjectForm();
+
+    private JsonObjectFunction __onSubmitValid = new JsonObjectFunction();
 
     public JsonObjectSchema get__schema() {
         return __schema;
@@ -35,7 +39,8 @@ public class JsonObject {
     }
 
     public String getForm() {
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder().registerTypeHierarchyAdapter(
+                Collection.class, new CollectionAdapter()).create();
         return gson.toJson(this).replace("__", "");
     }
 }

@@ -6,11 +6,13 @@ import java.util.ArrayList;
 
 public class JsonObjectProperty {
 
+    private String __linkId;
+
     private String __title;
 
     private String __type;
 
-    private ArrayList<String> __enum;
+    private ArrayList<String> __enum = new ArrayList<String>();
 
     private String __default;
 
@@ -58,6 +60,14 @@ public class JsonObjectProperty {
 
     public void add_item(String item) {
         this.__enum.add(item);
+    }
+
+    public String get__linkId() {
+        return __linkId;
+    }
+
+    public void set__linkId(String __linkId) {
+        this.__linkId = __linkId;
     }
 
     public String getForm() {
