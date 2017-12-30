@@ -2,32 +2,25 @@ package org.openmrs.module.fhirform;
 
 import com.google.gson.Gson;
 
-import java.util.ArrayList;
-
 public class JsonObjectSchema {
 
-    private String __type = "array";
+    private JsonObjectProperty __message = new JsonObjectProperty();
+    private JsonObjectItems __questions = new JsonObjectItems();
 
-    private ArrayList<JsonObjectItem> __items = new ArrayList<JsonObjectItem>();
-
-    public String get__type() {
-        return __type;
+    public JsonObjectProperty get__message() {
+        return __message;
     }
 
-    public void set__type(String __type) {
-        this.__type = __type;
+    public void set__message(JsonObjectProperty __message) {
+        this.__message = __message;
     }
 
-    public ArrayList<JsonObjectItem> get__items() {
-        return __items;
+    public JsonObjectItems get__questions() {
+        return __questions;
     }
 
-    public void set__items(ArrayList<JsonObjectItem> __items) {
-        this.__items = __items;
-    }
-
-    public void add_item(JsonObjectItem jsonObjectItem) {
-        this.__items.add(jsonObjectItem);
+    public void set__questions(JsonObjectItems __questions) {
+        this.__questions = __questions;
     }
 
     public String getForm() {

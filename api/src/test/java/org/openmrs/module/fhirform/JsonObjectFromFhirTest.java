@@ -8,6 +8,7 @@ public class JsonObjectFromFhirTest {
 
     JsonObjectProperty jsonObjectProperty;
     JsonObjectItem jsonObjectItem;
+    JsonObjectItems jsonObjectItems;
     JsonObjectSchema jsonObjectSchema;
     JsonObjectForm jsonObjectForm;
     JsonObjectFunction jsonObjectFunction;
@@ -17,6 +18,7 @@ public class JsonObjectFromFhirTest {
     public void setUp() {
         jsonObjectProperty = new JsonObjectProperty();
         jsonObjectItem = new JsonObjectItem();
+        jsonObjectItems = new JsonObjectItems();
         jsonObjectSchema = new JsonObjectSchema();
         jsonObjectForm = new JsonObjectForm();
         jsonObjectFunction = new JsonObjectFunction();
@@ -57,26 +59,31 @@ public class JsonObjectFromFhirTest {
         jsonObjectProperty.set__type("string");
         jsonObjectProperty.set__title("Nickname");
         jsonObjectProperty.set__required(true);
-        System.out.print(jsonObjectProperty.getForm());
+        //System.out.print(jsonObjectProperty.getForm());
 
-//        jsonObjectItem.set__title("Friend");
-//        jsonObjectItem.add_item(jsonObjectProperty);
-//
-//        jsonObjectProperty = new JsonObjectProperty();
-//        jsonObjectProperty.set__linkId("gender");
-//        jsonObjectProperty.set__type("string");
-//        jsonObjectProperty.set__title("Gender");
-//        jsonObjectProperty.add_item("male");
-//        jsonObjectProperty.add_item("female");
-//        jsonObjectItem.add_item(jsonObjectProperty);
-//
-//        jsonObjectProperty = new JsonObjectProperty();
-//        jsonObjectProperty.set__linkId("age");
-//        jsonObjectProperty.set__type("integer");
-//        jsonObjectProperty.set__title("Age");
-//        jsonObjectItem.add_item(jsonObjectProperty);
-//
-//        System.out.print(jsonObjectItem.getForm());
+        jsonObjectItem.set__title("Friend");
+        jsonObjectItem.add_item(jsonObjectProperty);
+
+        jsonObjectProperty = new JsonObjectProperty();
+        jsonObjectProperty.set__linkId("gender");
+        jsonObjectProperty.set__type("string");
+        jsonObjectProperty.set__title("Gender");
+        jsonObjectProperty.add_item("male");
+        jsonObjectProperty.add_item("female");
+        jsonObjectItem.add_item(jsonObjectProperty);
+
+        jsonObjectProperty = new JsonObjectProperty();
+        jsonObjectProperty.set__linkId("age");
+        jsonObjectProperty.set__type("integer");
+        jsonObjectProperty.set__title("Age");
+        jsonObjectItem.add_item(jsonObjectProperty);
+
+        jsonObjectItems.add_item(jsonObjectItem);
+        jsonObjectSchema.set__questions(jsonObjectItems);
+
+        jsonObjectFromFhir.set__schema(jsonObjectSchema);
+
+        System.out.print(jsonObjectFromFhir.getForm());
 
     }
 }

@@ -16,7 +16,7 @@ public class JsonObjectProperty {
 
     private String __default;
 
-    private boolean __required = false;
+    private boolean __required;
 
     public String get__title() {
         return __title;
