@@ -15,11 +15,11 @@ public class FhirformTransform {
 
     FhirContext ctxDstu3 = FhirContext.forDstu3();
 
-    private JSONFormItem jsonFormItem;
+    private FhirQuestionnaireItem fhirQuestionnaireItem;
 
-    private JSONFormSet jsonFormSet = new JSONFormSet();
+    private FhirQuestionnaireSet fhirQuestionnaireSet = new FhirQuestionnaireSet();
 
-    private JSONForm jsonForm = new JSONForm();
+    private FhirQuestionnaire fhirQuestionnaire = new FhirQuestionnaire();
 
     private String formID;
 
@@ -38,14 +38,14 @@ public class FhirformTransform {
         IParser parser = ctxDstu3.newJsonParser();
         Questionnaire q = parser.parseResource(Questionnaire.class, o.toString());
         for (Questionnaire.QuestionnaireItemComponent i : q.getItem()) {
-            jsonFormItem = new JSONFormItem();
-            jsonFormItem.set_title(i.getText());
-            jsonFormItem.set_type(i.getType().toString().toLowerCase());
-            jsonFormSet.add_item(jsonFormItem);
+            fhirQuestionnaireItem = new FhirQuestionnaireItem();
+            fhirQuestionnaireItem.set_title(i.getText());
+            fhirQuestionnaireItem.set_type(i.getType().toString().toLowerCase());
+            fhirQuestionnaireSet.add_item(fhirQuestionnaireItem);
         }
 
-        jsonForm.add_item(jsonFormSet);
-        return jsonForm.getForm();
+        fhirQuestionnaire.add_item(fhirQuestionnaireSet);
+        return fhirQuestionnaire.getForm();
     }
 
     public String getFormID() {

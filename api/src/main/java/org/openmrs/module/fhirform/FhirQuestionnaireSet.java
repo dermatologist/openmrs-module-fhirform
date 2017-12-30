@@ -9,23 +9,23 @@ import java.util.ArrayList;
  * Created by beapen on 04/12/2017.
  */
 @Component
-public class JSONFormSet {
+public class FhirQuestionnaireSet {
 
-    public ArrayList<JSONFormItem> __items;
+    public ArrayList<FhirQuestionnaireItem> __items;
 
     public String __type = "object";
 
     public String __title = "Title";
 
-    JSONFormSet() {
-        __items = new ArrayList<JSONFormItem>();
+    FhirQuestionnaireSet() {
+        __items = new ArrayList<FhirQuestionnaireItem>();
     }
 
-    public ArrayList<JSONFormItem> get_items() {
+    public ArrayList<FhirQuestionnaireItem> get_items() {
         return __items;
     }
 
-    public void add_item(JSONFormItem __item) {
+    public void add_item(FhirQuestionnaireItem __item) {
         this.__items.add(__item);
     }
 
