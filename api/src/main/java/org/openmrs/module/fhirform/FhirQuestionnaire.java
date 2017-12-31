@@ -9,11 +9,11 @@ import java.util.ArrayList;
  * Created by beapen on 04/12/2017.
  */
 @Component
-public class JSONForm {
+public class FhirQuestionnaire {
 
-    public ArrayList<JSONFormSet> __forms = new ArrayList<JSONFormSet>();
+    public ArrayList<FhirQuestionnaireSet> __forms = new ArrayList<FhirQuestionnaireSet>();
 
-    public void add_item(JSONFormSet __item) {
+    public void add_item(FhirQuestionnaireSet __item) {
         this.__forms.add(__item);
     }
 
