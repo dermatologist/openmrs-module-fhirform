@@ -15,11 +15,13 @@ public class FhirformTransform {
 
     FhirContext ctxDstu3 = FhirContext.forDstu3();
 
-    private FhirQuestionnaireItem fhirQuestionnaireItem;
-
-    private FhirQuestionnaireSet fhirQuestionnaireSet = new FhirQuestionnaireSet();
-
-    private FhirQuestionnaire fhirQuestionnaire = new FhirQuestionnaire();
+    // JsonObjects
+    JsonObjectProperty jsonObjectProperty;
+    JsonObjectItem jsonObjectItem = new JsonObjectItem();
+    JsonObjectSchema jsonObjectSchema = new JsonObjectSchema();
+    JsonObjectForm jsonObjectForm = new JsonObjectForm();
+    JsonObjectFunction jsonObjectFunction = new JsonObjectFunction();
+    JsonObjectFromFhir jsonObjectFromFhir = new JsonObjectFromFhir();
 
     private String formID;
 
@@ -38,14 +40,27 @@ public class FhirformTransform {
         IParser parser = ctxDstu3.newJsonParser();
         Questionnaire q = parser.parseResource(Questionnaire.class, o.toString());
         for (Questionnaire.QuestionnaireItemComponent i : q.getItem()) {
-            fhirQuestionnaireItem = new FhirQuestionnaireItem();
-            fhirQuestionnaireItem.set_title(i.getText());
-            fhirQuestionnaireItem.set_type(i.getType().toString().toLowerCase());
-            fhirQuestionnaireSet.add_item(fhirQuestionnaireItem);
-        }
+            jsonObjectProperty = new JsonObjectProperty();
 
-        fhirQuestionnaire.add_item(fhirQuestionnaireSet);
-        return fhirQuestionnaire.getForm();
+            // TODO: Group to array / fieldset
+            String _type = i.getType().toString().toLowerCase();
+            if (_type.contains("group")) {
+                _type = "object";
+            }
+
+            jsonObjectProperty.set__linkId(i.getLinkId());
+            jsonObjectProperty.set__title(i.getText());
+            jsonObjectProperty.set__type(_type);
+            jsonObjectItem.add_item(jsonObjectProperty);
+        }
+        jsonObjectItem.set__title("Questionnaire");
+
+        jsonObjectSchema.set__questions(jsonObjectItem);
+
+        jsonObjectFromFhir.set__schema(jsonObjectSchema);
+
+        return jsonObjectFromFhir.getForm();
+
     }
 
     public String getFormID() {
