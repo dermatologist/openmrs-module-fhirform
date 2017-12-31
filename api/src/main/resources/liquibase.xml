@@ -61,6 +61,13 @@
         </createTable>
     </changeSet>
 
+    <changeSet author="beapen" id="20171231-1-B">
+        <comment>Add Questionnaire ID Fhirform Definition Table</comment>
+        <addColumn tableName="FhirformDef">
+            <column name="questionnaire_id" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+
     <changeSet author="beapen" id="20171225-2">
         <comment>Create the Fhirform Instance Table</comment>
         <createTable tableName="Fhirform">

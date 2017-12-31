@@ -28,7 +28,7 @@ public class FhirformDef extends BaseOpenmrsData {
 
     private String formtype = "FHIRFORM";
 
-    //private String questionnaire_id;
+    private String questionnaire_id;
 
     private String version;
 
@@ -103,15 +103,15 @@ public class FhirformDef extends BaseOpenmrsData {
         this.formtype = formtype;
     }
 
-    /*
-        public String getQuestionnaire_id() {
+
+    public String getQuestionnaire_id() {
             return questionnaire_id;
         }
 
         public void setQuestionnaire_id(String questionnaire_id) {
             this.questionnaire_id = questionnaire_id;
         }
-    */
+
     public String getStatus() {
         return status;
     }
