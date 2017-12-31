@@ -5,7 +5,7 @@ import com.google.gson.Gson;
 public class JsonObjectSchema {
 
     private JsonObjectProperty __message = new JsonObjectProperty();
-    private JsonObjectItems __questions = new JsonObjectItems();
+    private JsonObjectItem __questions = new JsonObjectItem();
 
     public JsonObjectProperty get__message() {
         return __message;
@@ -15,11 +15,11 @@ public class JsonObjectSchema {
         this.__message = __message;
     }
 
-    public JsonObjectItems get__questions() {
+    public JsonObjectItem get__questions() {
         return __questions;
     }
 
-    public void set__questions(JsonObjectItems __questions) {
+    public void set__questions(JsonObjectItem __questions) {
         this.__questions = __questions;
     }
 

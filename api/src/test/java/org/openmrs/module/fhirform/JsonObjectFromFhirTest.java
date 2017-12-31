@@ -8,7 +8,6 @@ public class JsonObjectFromFhirTest {
 
     JsonObjectProperty jsonObjectProperty;
     JsonObjectItem jsonObjectItem;
-    JsonObjectItems jsonObjectItems;
     JsonObjectSchema jsonObjectSchema;
     JsonObjectForm jsonObjectForm;
     JsonObjectFunction jsonObjectFunction;
@@ -18,7 +17,6 @@ public class JsonObjectFromFhirTest {
     public void setUp() {
         jsonObjectProperty = new JsonObjectProperty();
         jsonObjectItem = new JsonObjectItem();
-        jsonObjectItems = new JsonObjectItems();
         jsonObjectSchema = new JsonObjectSchema();
         jsonObjectForm = new JsonObjectForm();
         jsonObjectFunction = new JsonObjectFunction();
@@ -78,12 +76,41 @@ public class JsonObjectFromFhirTest {
         jsonObjectProperty.set__title("Age");
         jsonObjectItem.add_item(jsonObjectProperty);
 
-        jsonObjectItems.add_item(jsonObjectItem);
-        jsonObjectSchema.set__questions(jsonObjectItems);
+        jsonObjectSchema.set__questions(jsonObjectItem);
 
         jsonObjectFromFhir.set__schema(jsonObjectSchema);
 
-        System.out.print(jsonObjectFromFhir.getForm());
+        String form = jsonObjectFromFhir.getForm();
+
+        String toReplace = form.substring(form.indexOf("\"properties\":["), form.indexOf("}]"));
+
+        String result = "{" + form.substring(form.indexOf("\"properties\":["), form.indexOf("}]")) + "}]}";
+
+        String toSubstitute = "{\n" +
+                "  \"nick\" : {\n" +
+                "    \"title\" : \"Nickname\",\n" +
+                "    \"type\" : \"string\",\n" +
+                "    \"required\" : true\n" +
+                "  },\n" +
+                "  \"gender\" : {\n" +
+                "    \"title\" : \"Gender\",\n" +
+                "    \"type\" : \"string\",\n" +
+                "    \"required\" : false,\n" +
+                "    \"enum\" : [ \"male\", \"female\" ]\n" +
+                "  },\n" +
+                "  \"age\" : {\n" +
+                "    \"title\" : \"Age\",\n" +
+                "    \"type\" : \"integer\",\n" +
+                "    \"required\" : false\n" +
+                "  }\n" +
+                "}\n";
+
+        String finalSubstitute = "  \"properties\":" + toSubstitute;
+        //System.out.println(toReplace);
+        //System.out.println(finalSubstitute);
+
+        String bellraj = form.replace(toReplace + "}]", finalSubstitute).replace(",\"form\":{},\"onSubmitValid\":{}", "");
+        System.out.println(bellraj);
 
     }
 }
