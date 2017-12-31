@@ -50,6 +50,7 @@
         -->
         <openmrsPlatformVersion>1.11.6</openmrsPlatformVersion>
         <hapiFhirBaseVersion>3.1.0</hapiFhirBaseVersion>
+        <latest.jolt.version>0.1.0</latest.jolt.version>
     </properties>
 
     <dependencyManagement>

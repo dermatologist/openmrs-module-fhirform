@@ -82,35 +82,37 @@ public class JsonObjectFromFhirTest {
 
         String form = jsonObjectFromFhir.getForm();
 
-        String toReplace = form.substring(form.indexOf("\"properties\":["), form.indexOf("}]"));
+        System.out.print(form);
 
-        String result = "{" + form.substring(form.indexOf("\"properties\":["), form.indexOf("}]")) + "}]}";
-
-        String toSubstitute = "{\n" +
-                "  \"nick\" : {\n" +
-                "    \"title\" : \"Nickname\",\n" +
-                "    \"type\" : \"string\",\n" +
-                "    \"required\" : true\n" +
-                "  },\n" +
-                "  \"gender\" : {\n" +
-                "    \"title\" : \"Gender\",\n" +
-                "    \"type\" : \"string\",\n" +
-                "    \"required\" : false,\n" +
-                "    \"enum\" : [ \"male\", \"female\" ]\n" +
-                "  },\n" +
-                "  \"age\" : {\n" +
-                "    \"title\" : \"Age\",\n" +
-                "    \"type\" : \"integer\",\n" +
-                "    \"required\" : false\n" +
-                "  }\n" +
-                "}\n";
-
-        String finalSubstitute = "  \"properties\":" + toSubstitute;
-        //System.out.println(toReplace);
-        //System.out.println(finalSubstitute);
-
-        String bellraj = form.replace(toReplace + "}]", finalSubstitute).replace(",\"form\":{},\"onSubmitValid\":{}", "");
-        System.out.println(bellraj);
+//        String toReplace = form.substring(form.indexOf("\"properties\":["), form.indexOf("}]"));
+//
+//        String result = "{" + form.substring(form.indexOf("\"properties\":["), form.indexOf("}]")) + "}]}";
+//
+//        String toSubstitute = "{\n" +
+//                "  \"nick\" : {\n" +
+//                "    \"title\" : \"Nickname\",\n" +
+//                "    \"type\" : \"string\",\n" +
+//                "    \"required\" : true\n" +
+//                "  },\n" +
+//                "  \"gender\" : {\n" +
+//                "    \"title\" : \"Gender\",\n" +
+//                "    \"type\" : \"string\",\n" +
+//                "    \"required\" : false,\n" +
+//                "    \"enum\" : [ \"male\", \"female\" ]\n" +
+//                "  },\n" +
+//                "  \"age\" : {\n" +
+//                "    \"title\" : \"Age\",\n" +
+//                "    \"type\" : \"integer\",\n" +
+//                "    \"required\" : false\n" +
+//                "  }\n" +
+//                "}\n";
+//
+//        String finalSubstitute = "  \"properties\":" + toSubstitute;
+//        //System.out.println(toReplace);
+//        //System.out.println(finalSubstitute);
+//
+//        String bellraj = form.replace(toReplace + "}]", finalSubstitute).replace(",\"form\":{},\"onSubmitValid\":{}", "");
+//        System.out.println(bellraj);
 
     }
 }
