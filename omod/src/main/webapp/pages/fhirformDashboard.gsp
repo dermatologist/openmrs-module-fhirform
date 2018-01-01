@@ -13,47 +13,7 @@
     ]
 </script>
 
-<script>
-    var jq = jQuery;
 
-
-    jq(document).ready(function () {
-
-        var confirmDeleteController = emr.setupConfirmationDialog({
-            selector: '#confirmDeletePopup',
-            actions: {
-                cancel: function () {
-                    confirmDeleteController.close();
-                },
-                confirm: function () {
-                    confirmDeleteController.close();
-                    jq.post("${ ui.actionLink("fhirform","fhirutils","deleteImage")}", {
-                            returnFormat: 'json',
-                            type: "data",
-                            image: (filesList[image_pointer]).trim()
-                        },
-                        function (data) {
-                            if (data.indexOf("${FHIRFORM_CONSTANTS.SUCCESS}") >= 0) {
-                                jq().toastmessage('showSuccessToast', "Image Deleted.");
-                                location.reload();
-                            } else {
-                                jq().toastmessage('showErrorToast', "Error. Try again after page refresh");
-                            }
-                        })
-                        .error(function () {
-                            jq().toastmessage('showErrorToast', "Error. Try again after page refresh");
-                        });
-                }
-            }
-        });
-
-
-        jq("#but_delete").click(function (e) {
-            confirmDeleteController.show();
-        });
-
-    });
-</script>
 
 <!-- Section 1 -->
 <h2>List of General (Patient Independent) Definitions:</h2>
@@ -83,15 +43,15 @@
             <a href="${ui.pageLink("fhirform", "fhirformListForDef", [fhirformDefId: it.id])}">
                 <i class="icon-eye-open view-action" title="View NuForms"></i>
             </a>
-            <a href="${ui.actionLink("fhirform", "fhirformUtils", "toggleDef", [fhirformDefId: it.id])}">
+            <a href="${ui.actionLink("fhirform", "fhirUtils", "toggleDef", [fhirformDefId: it.id])}">
                 <i class="icon-remove delete-action" title="Delete Definition"></i>
             </a>
             <% } else { %>
         <td>
-            <a href="${ui.actionLink("fhirform", "fhirformUtils", "toggleDef", [fhirformDefId: it.id])}">
+            <a href="${ui.actionLink("fhirform", "fhirUtils", "toggleDef", [fhirformDefId: it.id])}">
                 <i class="icon-undo delete-action" title="UnDelete"></i>
             </a>
-            <a href="${ui.actionLink("fhirform", "fhirformUtils", "purgeDef", [fhirformDefId: it.id])}">
+            <a href="${ui.actionLink("fhirform", "fhirUtils", "purgeDef", [fhirformDefId: it.id])}">
                 <i class="icon-remove delete-action" title="Purge"></i>
             </a>
             <% } %></td>

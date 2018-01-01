@@ -69,9 +69,24 @@
     </changeSet>
 
     <changeSet author="beapen" id="20171231-1-C">
-        <comment>Add changed_by to Fhirform Definition Table</comment>
+        <comment>Added standard tables</comment>
         <addColumn tableName="FhirformDef">
             <column name="changed_by" type="varchar(255)"/>
+            <column name="date_created" type="datetime"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet author="beapen" id="20171231-1-D">
+        <comment>Added standard tables</comment>
+        <addColumn tableName="FhirformDef">
+            <column name="creator" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet author="beapen" id="20171231-1-E">
+        <comment>Added standard tables</comment>
+        <addColumn tableName="FhirformDef">
+            <column name="date_changed" type="datetime"/>
         </addColumn>
     </changeSet>
 
@@ -104,4 +119,28 @@
 
         </createTable>
     </changeSet>
+
+    <changeSet author="beapen" id="20171231-2-C">
+        <comment>Added standard tables</comment>
+        <addColumn tableName="Fhirform">
+            <column name="changed_by" type="varchar(255)"/>
+            <column name="date_created" type="datetime"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet author="beapen" id="20171231-2-D">
+        <comment>Added standard tables</comment>
+        <addColumn tableName="Fhirform">
+            <column name="creator" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet author="beapen" id="20171231-2-E">
+        <comment>Added standard tables</comment>
+        <addColumn tableName="Fhirform">
+            <column name="date_changed" type="datetime"/>
+        </addColumn>
+    </changeSet>
+
+
 </databaseChangeLog>
