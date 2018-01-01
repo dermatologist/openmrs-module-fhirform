@@ -61,6 +61,45 @@
         </createTable>
     </changeSet>
 
+    <changeSet author="beapen" id="20171231-1-B">
+        <comment>Add Questionnaire ID Fhirform Definition Table</comment>
+        <addColumn tableName="FhirformDef">
+            <column name="questionnaire_id" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet author="beapen" id="20171231-1-C">
+        <comment>Added standard tables</comment>
+        <addColumn tableName="FhirformDef">
+            <column name="changed_by" type="varchar(255)"/>
+            <column name="date_created" type="datetime"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet author="beapen" id="20171231-1-D">
+        <comment>Added standard tables</comment>
+        <addColumn tableName="FhirformDef">
+            <column name="creator" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet author="beapen" id="20171231-1-E">
+        <comment>Added standard tables</comment>
+        <addColumn tableName="FhirformDef">
+            <column name="date_changed" type="datetime"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet author="beapen" id="20171231-1-F">
+        <comment>Added standard tables</comment>
+        <addColumn tableName="FhirformDef">
+            <column name="voided" type="bit"/>
+            <column name="voided_by" type="char(38)"/>
+            <column name="date_voided" type="datetime"/>
+            <column name="void_reason" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+
     <changeSet author="beapen" id="20171225-2">
         <comment>Create the Fhirform Instance Table</comment>
         <createTable tableName="Fhirform">
@@ -90,4 +129,36 @@
 
         </createTable>
     </changeSet>
+
+    <changeSet author="beapen" id="20171231-2-C">
+        <comment>Added standard tables</comment>
+        <addColumn tableName="Fhirform">
+            <column name="changed_by" type="varchar(255)"/>
+            <column name="date_created" type="datetime"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet author="beapen" id="20171231-2-D">
+        <comment>Added standard tables</comment>
+        <addColumn tableName="Fhirform">
+            <column name="creator" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet author="beapen" id="20171231-2-E">
+        <comment>Added standard tables</comment>
+        <addColumn tableName="Fhirform">
+            <column name="date_changed" type="datetime"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="beapen" id="20171231-2-F">
+        <comment>Added standard tables</comment>
+        <addColumn tableName="Fhirform">
+            <column name="voided" type="bit"/>
+            <column name="voided_by" type="char(38)"/>
+            <column name="date_voided" type="datetime"/>
+            <column name="void_reason" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+
 </databaseChangeLog>

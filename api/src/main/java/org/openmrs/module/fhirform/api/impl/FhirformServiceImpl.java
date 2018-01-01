@@ -15,6 +15,7 @@ import org.openmrs.api.UserService;
 import org.openmrs.api.impl.BaseOpenmrsService;
 import org.openmrs.module.fhirform.Fhirform;
 import org.openmrs.module.fhirform.FhirformDef;
+import org.openmrs.module.fhirform.FhirformTransform;
 import org.openmrs.module.fhirform.Item;
 import org.openmrs.module.fhirform.api.FhirformService;
 import org.openmrs.module.fhirform.api.dao.FhirformDao;
@@ -104,4 +105,10 @@ public class FhirformServiceImpl extends BaseOpenmrsService implements FhirformS
 	public void purgeFhirformDef(FhirformDef FhirformDef) {
 		dao.purgeFhirformDef(FhirformDef);
 	}
+
+    @Override
+    public String getJsonForm(FhirformDef fhirformDef) {
+        FhirformTransform fhirformTransform = new FhirformTransform();
+        return fhirformTransform.getJsonForm(fhirformDef.getQuestionnaireUrl(), fhirformDef.getQuestionnaire_id(), fhirformDef.getVersion());
+    }
 }
