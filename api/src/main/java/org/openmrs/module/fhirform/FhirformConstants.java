@@ -38,7 +38,7 @@ public class FhirformConstants {
 
     public final static int GLOBALPROPERTY_FHIRFORM_SUCCESS = 200;
 
-    public static final SimpleObject NUFORM_CONSTANTS() {
+    public static final SimpleObject FHIRFORM_CONSTANTS() {
         SimpleObject o = new SimpleObject();
         o.put("GENERALFORM", "1");
         o.put("PATIENTFORM", "2");

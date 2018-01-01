@@ -19,7 +19,7 @@ public class FhirformDashboardPageController {
     public void controller(PageModel model) throws EvaluationException {
         FhirformService fhirFormService = Context.getService(FhirformService.class);
 
-        model.addAttribute("FHIRFORM_CONSTANTS", FhirformConstants.NUFORM_CONSTANTS());
+        model.addAttribute("FHIRFORM_CONSTANTS", FhirformConstants.FHIRFORM_CONSTANTS());
         model.addAttribute("fhirformdefs", fhirFormService.getAllDef(FhirformConstants.GENERALFORM));
     }
 

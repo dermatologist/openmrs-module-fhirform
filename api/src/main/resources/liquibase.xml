@@ -90,6 +90,16 @@
         </addColumn>
     </changeSet>
 
+    <changeSet author="beapen" id="20171231-1-F">
+        <comment>Added standard tables</comment>
+        <addColumn tableName="FhirformDef">
+            <column name="voided" type="bit"/>
+            <column name="voided_by" type="char(38)"/>
+            <column name="date_voided" type="datetime"/>
+            <column name="void_reason" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+
     <changeSet author="beapen" id="20171225-2">
         <comment>Create the Fhirform Instance Table</comment>
         <createTable tableName="Fhirform">
@@ -141,6 +151,14 @@
             <column name="date_changed" type="datetime"/>
         </addColumn>
     </changeSet>
-
+    <changeSet author="beapen" id="20171231-2-F">
+        <comment>Added standard tables</comment>
+        <addColumn tableName="Fhirform">
+            <column name="voided" type="bit"/>
+            <column name="voided_by" type="char(38)"/>
+            <column name="date_voided" type="datetime"/>
+            <column name="void_reason" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
 
 </databaseChangeLog>
