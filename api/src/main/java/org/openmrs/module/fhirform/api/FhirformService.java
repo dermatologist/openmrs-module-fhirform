@@ -76,4 +76,6 @@ public interface FhirformService extends OpenmrsService {
 
 	@Transactional(readOnly = true)
 	List<Fhirform> getAllFhirformsByPatient(Patient patient);
+
+    String getJsonForm(FhirformDef FhirformDef);
 }
