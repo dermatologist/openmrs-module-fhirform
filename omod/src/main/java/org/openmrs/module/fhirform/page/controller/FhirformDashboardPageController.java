@@ -20,7 +20,7 @@ public class FhirformDashboardPageController {
         FhirformService fhirFormService = Context.getService(FhirformService.class);
 
         model.addAttribute("FHIRFORM_CONSTANTS", FhirformConstants.NUFORM_CONSTANTS());
-        model.addAttribute("nuformdefs", fhirFormService.getAllDef(FhirformConstants.GENERALFORM));
+        model.addAttribute("fhirformdefs", fhirFormService.getAllDef(FhirformConstants.GENERALFORM));
     }
 
     public String post(@RequestParam("formtype") String formtype,

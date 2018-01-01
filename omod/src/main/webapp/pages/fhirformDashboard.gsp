@@ -27,7 +27,7 @@
                 },
                 confirm: function () {
                     confirmDeleteController.close();
-                    jq.post("${ ui.actionLink("fhirform","fhirformUtils","deleteImage")}", {
+                    jq.post("${ ui.actionLink("fhirform","fhirutils","deleteImage")}", {
                             returnFormat: 'json',
                             type: "data",
                             image: (filesList[image_pointer]).trim()

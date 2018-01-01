@@ -68,6 +68,13 @@
         </addColumn>
     </changeSet>
 
+    <changeSet author="beapen" id="20171231-1-C">
+        <comment>Add changed_by to Fhirform Definition Table</comment>
+        <addColumn tableName="FhirformDef">
+            <column name="changed_by" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+
     <changeSet author="beapen" id="20171225-2">
         <comment>Create the Fhirform Instance Table</comment>
         <createTable tableName="Fhirform">
