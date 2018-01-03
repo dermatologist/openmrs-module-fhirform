@@ -77,3 +77,19 @@
   }
 }
 ```
+
+## BaseOpenMrs Object requires the following in Liquibase
+```
+            <column name="changed_by" type="varchar(255)"/>
+            <column name="date_created" type="datetime"/>
+            <column name="creator" type="varchar(255)"/>
+            <column name="date_changed" type="datetime"/>
+            <column name="voided" type="bit"/>
+            <column name="voided_by" type="char(38)"/>
+            <column name="date_voided" type="datetime"/>
+            <column name="void_reason" type="varchar(255)"/>
+
+```
+
+## @Transactional annotation is required.
+* Will throw HibernateEventListner NullPointerException.

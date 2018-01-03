@@ -36,13 +36,20 @@
                                  referencedColumnNames="user_id" />
     </changeSet> -->
 
-    <changeSet author="beapen" id="20180101-1">
+    <changeSet author="beapen" id="20180102-1">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="FhirformDef"/>
+            </not>
+        </preConditions>
         <comment>Create the Fhirform Definition Table</comment>
         <createTable tableName="FhirformDef">
             <column autoIncrement="true" name="id" type="int">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="uuid" type="char(38)"/>
+            <column name="uuid" type="char(38)">
+                <constraints nullable="false" unique="true"></constraints>
+            </column>
 
             <column name="created_by" type="char(38)"/>
             <column name="deleted_by" type="char(38)"/>
@@ -71,13 +78,20 @@
     </changeSet>
 
 
-    <changeSet author="beapen" id="20180101-2">
+    <changeSet author="beapen" id="20180102-2">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="Fhirform"/>
+            </not>
+        </preConditions>
         <comment>Create the Fhirform Instance Table</comment>
         <createTable tableName="Fhirform">
             <column autoIncrement="true" name="id" type="int">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="uuid" type="char(38)"/>
+            <column name="uuid" type="char(38)">
+                <constraints nullable="false" unique="true"></constraints>
+            </column>
             <column name="FhirformDef" type="int"/>
 
             <column name="created_by" type="char(38)"/>
@@ -108,6 +122,11 @@
             <column name="void_reason" type="varchar(255)"/>
 
         </createTable>
+
+        <addForeignKeyConstraint constraintName="Fhirform_FhirformDef_fk" baseTableName="Fhirform"
+                                 baseColumnNames="FhirformDef" referencedTableName="FhirformDef"
+                                 referencedColumnNames="id"/>
+
     </changeSet>
 
 </databaseChangeLog>
