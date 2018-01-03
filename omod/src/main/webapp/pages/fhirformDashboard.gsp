@@ -41,10 +41,10 @@
         <% if (it.status == FHIRFORM_CONSTANTS.ACTIVE) { %>
         <td>
             <a href="${ui.pageLink("fhirform", "fhirform", [fhirformDefId: it.id])}">
-                <i class="icon-file-alt edit-action" title="Create NuForm"></i>
+                <i class="icon-file-alt edit-action" title="Create FhirForm"></i>
             </a>
             <a href="${ui.pageLink("fhirform", "fhirformListForDef", [fhirformDefId: it.id])}">
-                <i class="icon-eye-open view-action" title="View NuForms"></i>
+                <i class="icon-eye-open view-action" title="View FhirForms"></i>
             </a>
             <a href="${ui.actionLink("fhirform", "fhirutils", "toggleDef", [fhirformDefId: it.id])}">
                 <i class="icon-remove delete-action" title="Delete Definition"></i>
@@ -92,7 +92,7 @@
 
     <label for="fhirform-comments">Comments</label>
     <textarea name="comments" id="fhirform-comments"></textarea><br>
-    <button type="submit" id="fhirform-create">Create NuForm</button>
+    <button type="submit" id="fhirform-create">Create FhirForm</button>
 </form>
 
 <!-- Section 4 -->
