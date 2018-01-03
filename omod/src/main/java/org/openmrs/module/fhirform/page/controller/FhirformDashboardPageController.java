@@ -30,25 +30,25 @@ public class FhirformDashboardPageController {
                        @RequestParam(required = false, value = "submissionUrl", defaultValue = "") String submissionUrl,
                        @RequestParam(required = false, value = "comments", defaultValue = "") String comment, Errors errors, UiUtils ui) {
 
-        FhirformDef nuformDef = new FhirformDef();
+        FhirformDef fhirformDef = new FhirformDef();
         User user = Context.getAuthenticatedUser();
         Calendar cal = Calendar.getInstance();
-        nuformDef.setCreated_by(user.toString());
-        nuformDef.setCreated_on(cal.getTime());
-        nuformDef.setFormtype(formtype);
-        nuformDef.setVersion(version);
-        nuformDef.setQuestionnaireUrl(questionnaireUrl);
-        nuformDef.setQuestionnaire_id(questionnaire_id);
-        nuformDef.setSubmissionUrl(submissionUrl);
-        nuformDef.setStatus(FhirformConstants.ACTIVE);
-        nuformDef.setComments(comment);
-        FhirformService nuformService = Context.getService(FhirformService.class);
-        FhirformDef saved = nuformService.saveFhirformDef(nuformDef);
+        fhirformDef.setCreated_by(user.toString());
+        fhirformDef.setCreated_on(cal.getTime());
+        fhirformDef.setFormtype(formtype);
+        fhirformDef.setVersion(version);
+        fhirformDef.setQuestionnaireUrl(questionnaireUrl);
+        fhirformDef.setQuestionnaire_id(questionnaire_id);
+        fhirformDef.setSubmissionUrl(submissionUrl);
+        fhirformDef.setStatus(FhirformConstants.ACTIVE);
+        fhirformDef.setComments(comment);
+        FhirformService fhirformService = Context.getService(FhirformService.class);
+        FhirformDef saved = fhirformService.saveFhirformDef(fhirformDef);
         SimpleObject redirectParams = new SimpleObject();
         if (saved.getId() != null)
             redirectParams.put("savedId", saved.getId());
         else
             redirectParams.put("savedId", 0);
-        return "redirect:" + ui.pageLink("nuform", "nuformDashboard", redirectParams);
+        return "redirect:" + ui.pageLink("fhirform", "fhirformDashboard", redirectParams);
     }
 }
