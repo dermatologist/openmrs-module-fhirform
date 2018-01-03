@@ -23,7 +23,7 @@ public class FhirformPageController {
                     @RequestParam(required = false, value = "questionnaireUrl", defaultValue = "") String questionnaireUrl,
                     @RequestParam(required = false, value = "questionnaire_id", defaultValue = "") String questionnaire_id,
                     @RequestParam(required = false, value = "version", defaultValue = "") String version,
-                    @RequestParam(required = false, value = "lesionmap", defaultValue = "") String lesionmap,
+                    @RequestParam(required = false, value = "response", defaultValue = "") String response,
                     PageModel model) {
         FhirformService fhirformService = Context.getService(FhirformService.class);
         String formtype = "";
@@ -42,7 +42,7 @@ public class FhirformPageController {
             questionnaireUrl = fhirformDef.getQuestionnaireUrl();
             questionnaire_id = fhirformDef.getQuestionnaire_id();
             version = fhirformDef.getVersion();
-
+            response = fhirform.getResponse();
         }
 
         String jsonForm = fhirformService.getJsonForm(fhirformDef);
@@ -53,6 +53,7 @@ public class FhirformPageController {
         model.addAttribute("questionnaireUrl", questionnaireUrl);
         model.addAttribute("questionnaire_id", questionnaire_id);
         model.addAttribute("version", version);
+        model.addAttribute("form_response", response);
         model.addAttribute("formtype", formtype);
         model.addAttribute("FHIRFORM_CONSTANTS", FhirformConstants.FHIRFORM_CONSTANTS());
 
