@@ -36,6 +36,7 @@ public class Fhirform extends BaseOpenmrsData {
 
     private String submissionUrl;
 
+    @Column(name = "patientId")
     private Patient patient;
 
     private String response;

@@ -27,10 +27,10 @@ import java.util.List;
  */
 public interface FhirformService extends OpenmrsService {
 
-	/**
+    /**
 	 * Returns an item by uuid. It can be called by any authenticated user. It is fetched in read
 	 * only transaction.
-	 *
+     *
 	 * @param uuid
 	 * @return
 	 * @throws APIException
@@ -39,10 +39,10 @@ public interface FhirformService extends OpenmrsService {
 	@Transactional(readOnly = true)
 	Item getItemByUuid(String uuid) throws APIException;
 
-	/**
+    /**
 	 * Saves an item. Sets the owner to superuser, if it is not set. It can be called by users with
 	 * this module's privilege. It is executed in a transaction.
-	 *
+     *
 	 * @param item
 	 * @return
 	 * @throws APIException
@@ -51,30 +51,34 @@ public interface FhirformService extends OpenmrsService {
 	@Transactional
 	Item saveItem(Item item) throws APIException;
 
-	@Transactional(readOnly = true)
+    @Transactional(readOnly = true)
 	List<FhirformDef> getAllDef(String formtype);
 
-	@Transactional(readOnly = true)
+    @Transactional(readOnly = true)
 	List<Fhirform> getAllFhirforms(String status);
 
-	@Transactional(readOnly = true)
+    @Transactional(readOnly = true)
 	Fhirform getFhirformById(int id);
 
+    @Transactional
 	Fhirform saveFhirform(Fhirform Fhirform);
 
+    @Transactional
 	void purgeFhirform(Fhirform Fhirform);
 
-	@Transactional(readOnly = true)
+    @Transactional(readOnly = true)
 	FhirformDef getFhirformDefById(int id);
 
+    @Transactional
 	FhirformDef saveFhirformDef(FhirformDef FhirformDef);
 
+    @Transactional
 	void purgeFhirformDef(FhirformDef FhirformDef);
 
-	@Transactional(readOnly = true)
+    @Transactional(readOnly = true)
 	List<Fhirform> getAllFhirformsByDef(FhirformDef FhirformDef);
 
-	@Transactional(readOnly = true)
+    @Transactional(readOnly = true)
 	List<Fhirform> getAllFhirformsByPatient(Patient patient);
 
     String getJsonForm(FhirformDef FhirformDef);

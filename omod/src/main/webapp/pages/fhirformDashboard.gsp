@@ -35,7 +35,7 @@
     <% fhirformdefs.each { %>
     <tr<% if (it.status != FHIRFORM_CONSTANTS.ACTIVE) { %> class="inactive" <% } %>>
         <td>${it.id}</td>
-        <td>${it.backgroundImage} (${it.comments})</td>
+        <td>${it.questionnaireUrl}/${it.questionnaire_id}/${it.version}</td>
         <td>${it.created_on}</td>
         <td>${it.formtype}</td>
         <% if (it.status == FHIRFORM_CONSTANTS.ACTIVE) { %>
@@ -46,15 +46,15 @@
             <a href="${ui.pageLink("fhirform", "fhirformListForDef", [fhirformDefId: it.id])}">
                 <i class="icon-eye-open view-action" title="View NuForms"></i>
             </a>
-            <a href="${ui.actionLink("fhirform", "fhirUtils", "toggleDef", [fhirformDefId: it.id])}">
+            <a href="${ui.actionLink("fhirform", "fhirutils", "toggleDef", [fhirformDefId: it.id])}">
                 <i class="icon-remove delete-action" title="Delete Definition"></i>
             </a>
             <% } else { %>
         <td>
-            <a href="${ui.actionLink("fhirform", "fhirUtils", "toggleDef", [fhirformDefId: it.id])}">
+            <a href="${ui.actionLink("fhirform", "fhirutils", "toggleDef", [fhirformDefId: it.id])}">
                 <i class="icon-undo delete-action" title="UnDelete"></i>
             </a>
-            <a href="${ui.actionLink("fhirform", "fhirUtils", "purgeDef", [fhirformDefId: it.id])}">
+            <a href="${ui.actionLink("fhirform", "fhirutils", "purgeDef", [fhirformDefId: it.id])}">
                 <i class="icon-remove delete-action" title="Purge"></i>
             </a>
             <% } %></td>

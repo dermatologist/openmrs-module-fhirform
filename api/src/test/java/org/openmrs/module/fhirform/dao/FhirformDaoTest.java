@@ -9,15 +9,18 @@
  */
 package org.openmrs.module.fhirform.api.dao;
 
-import org.junit.Test;
 import org.junit.Ignore;
+import org.junit.Test;
 import org.openmrs.api.UserService;
 import org.openmrs.api.context.Context;
+import org.openmrs.module.fhirform.FhirformDef;
 import org.openmrs.module.fhirform.Item;
 import org.openmrs.test.BaseModuleContextSensitiveTest;
 import org.springframework.beans.factory.annotation.Autowired;
-import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.*;
+
+import static org.hamcrest.Matchers.hasProperty;
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
 
 /**
  * It is an integration test (extends BaseModuleContextSensitiveTest), which verifies DAO methods
@@ -55,4 +58,28 @@ public class FhirformDaoTest extends BaseModuleContextSensitiveTest {
 		assertThat(savedItem, hasProperty("owner", is(item.getOwner())));
 		assertThat(savedItem, hasProperty("description", is(item.getDescription())));
 	}
+
+    @Test
+    public void saveFhirformDef_shouldSaveAllPropertiesinDb() {
+        FhirformDef fhirformDef = new FhirformDef();
+        fhirformDef.setQuestionnaireUrl("http://example.com/dstu3/");
+        fhirformDef.setQuestionnaire_id("123245");
+        fhirformDef.setVersion("10");
+        fhirformDef.setComments("Test");
+
+        dao.saveFhirformDef(fhirformDef);
+
+        //Let's clean up the cache to be sure getItemByUuid fetches from DB and not from cache
+        Context.flushSession();
+        Context.clearSession();
+
+        //Then
+        FhirformDef savedFhirformDef = dao.getFhirformDefById(fhirformDef.getId());
+
+        assertThat(savedFhirformDef, hasProperty("uuid", is(savedFhirformDef.getUuid())));
+        assertThat(savedFhirformDef, hasProperty("version", is(savedFhirformDef.getVersion())));
+        assertThat(savedFhirformDef, hasProperty("questionnaire_id", is(savedFhirformDef.getQuestionnaire_id())));
+
+        dao.purgeFhirformDef(savedFhirformDef);
+    }
 }
