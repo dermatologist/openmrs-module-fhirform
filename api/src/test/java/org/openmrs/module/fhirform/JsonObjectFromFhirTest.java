@@ -8,7 +8,6 @@ public class JsonObjectFromFhirTest {
 
     JsonObjectProperty jsonObjectProperty;
     JsonObjectItem jsonObjectItem;
-    JsonObjectSchema jsonObjectSchema;
     JsonObjectForm jsonObjectForm;
     JsonObjectFunction jsonObjectFunction;
     JsonObjectFromFhir jsonObjectFromFhir;
@@ -17,7 +16,6 @@ public class JsonObjectFromFhirTest {
     public void setUp() {
         jsonObjectProperty = new JsonObjectProperty();
         jsonObjectItem = new JsonObjectItem();
-        jsonObjectSchema = new JsonObjectSchema();
         jsonObjectForm = new JsonObjectForm();
         jsonObjectFunction = new JsonObjectFunction();
         jsonObjectFromFhir = new JsonObjectFromFhir();
@@ -76,9 +74,10 @@ public class JsonObjectFromFhirTest {
         jsonObjectProperty.set__title("Age");
         jsonObjectItem.add_item(jsonObjectProperty);
 
-        jsonObjectSchema.set__questions(jsonObjectItem);
 
-        jsonObjectFromFhir.set__schema(jsonObjectSchema);
+        jsonObjectFromFhir.add_schema("Section_1", jsonObjectItem);
+        jsonObjectFromFhir.add_schema("Section_2", jsonObjectItem);
+
 
         String form = jsonObjectFromFhir.getForm();
 

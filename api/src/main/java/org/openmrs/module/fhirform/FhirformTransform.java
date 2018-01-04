@@ -2,6 +2,7 @@ package org.openmrs.module.fhirform;
 
 import ca.uhn.fhir.context.FhirContext;
 import ca.uhn.fhir.parser.IParser;
+import org.apache.commons.lang.RandomStringUtils;
 import org.hl7.fhir.dstu3.model.Questionnaire;
 
 /**
@@ -18,7 +19,6 @@ public class FhirformTransform {
     // JsonObjects
     JsonObjectProperty jsonObjectProperty;
     JsonObjectItem jsonObjectItem = new JsonObjectItem();
-    JsonObjectSchema jsonObjectSchema = new JsonObjectSchema();
     JsonObjectForm jsonObjectForm = new JsonObjectForm();
     JsonObjectFunction jsonObjectFunction = new JsonObjectFunction();
     JsonObjectFromFhir jsonObjectFromFhir = new JsonObjectFromFhir();
@@ -53,11 +53,9 @@ public class FhirformTransform {
             jsonObjectProperty.set__type(_type);
             jsonObjectItem.add_item(jsonObjectProperty);
         }
-        jsonObjectItem.set__title("Questionnaire");
-
-        jsonObjectSchema.set__questions(jsonObjectItem);
-
-        jsonObjectFromFhir.set__schema(jsonObjectSchema);
+        jsonObjectItem.set__title("Questionnaire");//TODO: To change
+        String generatedString = RandomStringUtils.randomAlphanumeric(10);
+        jsonObjectFromFhir.add_schema(generatedString, jsonObjectItem);
 
         return jsonObjectFromFhir.getForm();
 

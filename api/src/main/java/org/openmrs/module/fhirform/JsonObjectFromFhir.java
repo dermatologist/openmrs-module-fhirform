@@ -5,34 +5,46 @@ import com.bazaarvoice.jolt.JsonUtils;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.openmrs.module.fhirform.api.impl.CollectionAdapter;
+import org.openmrs.ui.framework.SimpleObject;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 public class JsonObjectFromFhir {
 
-    private JsonObjectSchema __schema = new JsonObjectSchema();
+    //JsonObjectItems
+    private SimpleObject __schema = new SimpleObject();
 
-    private JsonObjectForm __form = new JsonObjectForm();
+    //Previously submitted form values
+    private SimpleObject __values = new SimpleObject();
+
+    private ArrayList<JsonObjectForm> __form = new ArrayList<JsonObjectForm>();
 
     private JsonObjectFunction __onSubmitValid = new JsonObjectFunction();
 
-    public JsonObjectSchema get__schema() {
-        return __schema;
-    }
 
-    public void set__schema(JsonObjectSchema __schema) {
-        this.__schema = __schema;
-    }
 
-    public JsonObjectForm get__form() {
+    public ArrayList<JsonObjectForm> get__form() {
         return __form;
     }
 
-    public void set__form(JsonObjectForm __form) {
+    public void set__form(ArrayList<JsonObjectForm> __form) {
         this.__form = __form;
     }
 
+    public void add_form(JsonObjectForm jsonObjectForm) {
+        this.__form.add(jsonObjectForm);
+    }
+
+    public void add_schema(String key, JsonObjectItem jsonObjectItem) {
+        this.__schema.put(key, jsonObjectItem);
+    }
+
+    //Previously submitted form values
+    public void add_value(String key, String value) {
+        this.__values.put(key, value);
+    }
     public JsonObjectFunction get__onSubmitValid() {
         return __onSubmitValid;
     }
@@ -85,7 +97,10 @@ public class JsonObjectFromFhir {
         String replacement = "  \"properties\":" + JsonUtils.toJsonString(transformedOutput);
 
 
-        String toReturn = jsonFhirForm.replace(toReplace + "}]", replacement).replace(",\"form\":{},\"onSubmitValid\":{}", "");
+        //String toReturn = jsonFhirForm.replace(toReplace + "}]", replacement).replace(",\"form\":{},\"onSubmitValid\":{}", "");
+        String toReturn = jsonFhirForm.replace(toReplace + "}]", replacement)
+                .replace(",\"onSubmitValid\":{}", ",\"onSubmitValid\": function(values){fhirFormSubmit(values);}");
+
         return toReturn;
     }
 }
