@@ -99,7 +99,7 @@ public class JsonObjectFromFhir {
 
         //String toReturn = jsonFhirForm.replace(toReplace + "}]", replacement).replace(",\"form\":{},\"onSubmitValid\":{}", "");
         String toReturn = jsonFhirForm.replace(toReplace + "}]", replacement)
-                .replace(",\"onSubmitValid\":{}", ",\"onSubmitValid\":{function(values){fhirFormSubmit(values);}}");
+                .replace(",\"onSubmitValid\":{}", ",\"onSubmitValid\": function(values){fhirFormSubmit(values);}");
 
         return toReturn;
     }

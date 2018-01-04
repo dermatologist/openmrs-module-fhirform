@@ -14,7 +14,7 @@
 <script>
 
     function fhirFormSubmit(values) {
-        alert(values);
+        console.log(values);
     }
 
     jQuery(document).ready(function () {
