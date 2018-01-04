@@ -13,6 +13,10 @@
 %>
 <script>
 
+    function fhirFormSubmit(values) {
+        alert(values);
+    }
+
     jQuery(document).ready(function () {
         jQuery('form').jsonForm(${jsonForm});
     });
