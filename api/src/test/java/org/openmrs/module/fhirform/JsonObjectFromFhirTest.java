@@ -80,6 +80,7 @@ public class JsonObjectFromFhirTest {
 
         jsonObjectFromFhir.set__schema(jsonObjectSchema);
 
+
         String form = jsonObjectFromFhir.getForm();
 
         System.out.print(form);

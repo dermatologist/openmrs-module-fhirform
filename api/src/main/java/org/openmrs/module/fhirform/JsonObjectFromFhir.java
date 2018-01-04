@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.openmrs.module.fhirform.api.impl.CollectionAdapter;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -13,7 +14,7 @@ public class JsonObjectFromFhir {
 
     private JsonObjectSchema __schema = new JsonObjectSchema();
 
-    private JsonObjectForm __form = new JsonObjectForm();
+    private ArrayList<JsonObjectForm> __form = new ArrayList<JsonObjectForm>();
 
     private JsonObjectFunction __onSubmitValid = new JsonObjectFunction();
 
@@ -25,12 +26,16 @@ public class JsonObjectFromFhir {
         this.__schema = __schema;
     }
 
-    public JsonObjectForm get__form() {
+    public ArrayList<JsonObjectForm> get__form() {
         return __form;
     }
 
-    public void set__form(JsonObjectForm __form) {
+    public void set__form(ArrayList<JsonObjectForm> __form) {
         this.__form = __form;
+    }
+
+    public void add_item(JsonObjectForm jsonObjectForm) {
+        this.__form.add(jsonObjectForm);
     }
 
     public JsonObjectFunction get__onSubmitValid() {
@@ -85,7 +90,10 @@ public class JsonObjectFromFhir {
         String replacement = "  \"properties\":" + JsonUtils.toJsonString(transformedOutput);
 
 
-        String toReturn = jsonFhirForm.replace(toReplace + "}]", replacement).replace(",\"form\":{},\"onSubmitValid\":{}", "");
+        //String toReturn = jsonFhirForm.replace(toReplace + "}]", replacement).replace(",\"form\":{},\"onSubmitValid\":{}", "");
+        String toReturn = jsonFhirForm.replace(toReplace + "}]", replacement)
+                .replace(",\"onSubmitValid\":{}", ",\"onSubmitValid\":{function(values){fhirFormSubmit(values);}}");
+
         return toReturn;
     }
 }
