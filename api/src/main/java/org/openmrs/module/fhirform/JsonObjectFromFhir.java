@@ -13,7 +13,11 @@ import java.util.List;
 
 public class JsonObjectFromFhir {
 
+    //JsonObjectItems
     private SimpleObject __schema = new SimpleObject();
+
+    //Previously submitted form values
+    private SimpleObject __values = new SimpleObject();
 
     private ArrayList<JsonObjectForm> __form = new ArrayList<JsonObjectForm>();
 
@@ -37,6 +41,10 @@ public class JsonObjectFromFhir {
         this.__schema.put(key, jsonObjectItem);
     }
 
+    //Previously submitted form values
+    public void add_value(String key, String value) {
+        this.__values.put(key, value);
+    }
     public JsonObjectFunction get__onSubmitValid() {
         return __onSubmitValid;
     }
