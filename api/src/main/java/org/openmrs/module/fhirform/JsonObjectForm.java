@@ -14,7 +14,7 @@ public class JsonObjectForm {
 
     private String __helpvalue;
 
-    private ArrayList<JsonObjectItem> __items = new ArrayList<JsonObjectItem>();
+    private ArrayList<JsonObjectSet> __items = new ArrayList<JsonObjectSet>();
 
     public String get__key() {
         return __key;
@@ -48,16 +48,16 @@ public class JsonObjectForm {
         this.__helpvalue = __helpvalue;
     }
 
-    public ArrayList<JsonObjectItem> get__items() {
+    public ArrayList<JsonObjectSet> get__items() {
         return __items;
     }
 
-    public void set__items(ArrayList<JsonObjectItem> __items) {
+    public void set__items(ArrayList<JsonObjectSet> __items) {
         this.__items = __items;
     }
 
-    public void add_item(JsonObjectItem jsonObjectItem) {
-        this.__items.add(jsonObjectItem);
+    public void add_item(JsonObjectSet jsonObjectSet) {
+        this.__items.add(jsonObjectSet);
     }
 
     public String getForm() {

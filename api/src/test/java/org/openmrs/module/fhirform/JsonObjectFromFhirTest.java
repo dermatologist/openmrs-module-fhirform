@@ -7,7 +7,7 @@ import org.junit.Test;
 public class JsonObjectFromFhirTest {
 
     JsonObjectProperty jsonObjectProperty;
-    JsonObjectItem jsonObjectItem;
+    JsonObjectSet jsonObjectSet;
     JsonObjectForm jsonObjectForm;
     JsonObjectFunction jsonObjectFunction;
     JsonObjectFromFhir jsonObjectFromFhir;
@@ -15,7 +15,7 @@ public class JsonObjectFromFhirTest {
     @Before
     public void setUp() {
         jsonObjectProperty = new JsonObjectProperty();
-        jsonObjectItem = new JsonObjectItem();
+        jsonObjectSet = new JsonObjectSet();
         jsonObjectForm = new JsonObjectForm();
         jsonObjectFunction = new JsonObjectFunction();
         jsonObjectFromFhir = new JsonObjectFromFhir();
@@ -57,8 +57,8 @@ public class JsonObjectFromFhirTest {
         jsonObjectProperty.set__required(true);
         //System.out.print(jsonObjectProperty.getForm());
 
-        jsonObjectItem.set__title("Friend");
-        jsonObjectItem.add_item(jsonObjectProperty);
+        jsonObjectSet.set__title("Friend");
+        jsonObjectSet.add_item(jsonObjectProperty);
 
         jsonObjectProperty = new JsonObjectProperty();
         jsonObjectProperty.set__linkId("gender");
@@ -66,17 +66,17 @@ public class JsonObjectFromFhirTest {
         jsonObjectProperty.set__title("Gender");
         jsonObjectProperty.add_item("male");
         jsonObjectProperty.add_item("female");
-        jsonObjectItem.add_item(jsonObjectProperty);
+        jsonObjectSet.add_item(jsonObjectProperty);
 
         jsonObjectProperty = new JsonObjectProperty();
         jsonObjectProperty.set__linkId("age");
         jsonObjectProperty.set__type("integer");
         jsonObjectProperty.set__title("Age");
-        jsonObjectItem.add_item(jsonObjectProperty);
+        jsonObjectSet.add_item(jsonObjectProperty);
 
 
-        jsonObjectFromFhir.add_schema("Section_1", jsonObjectItem);
-        jsonObjectFromFhir.add_schema("Section_2", jsonObjectItem);
+        jsonObjectFromFhir.add_schema("Section_1", jsonObjectSet);
+        jsonObjectFromFhir.add_schema("Section_2", jsonObjectSet);
 
 
         String form = jsonObjectFromFhir.getForm();
