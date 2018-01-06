@@ -4,8 +4,8 @@
     "id": "fhir.patient.dashboard",
     "extensionPointId": "patientDashboard.secondColumnFragments",
     "extensionParams": {
-      "provider": "fhir",
-      "fragment": "fhirfragment"
+      "provider": "fhirform",
+      "fragment": "fhir"
     }
   }
 ]

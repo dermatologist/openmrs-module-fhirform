@@ -35,7 +35,7 @@
     <% fhirformdefs.each { %>
     <tr<% if (it.status != FHIRFORM_CONSTANTS.ACTIVE) { %> class="inactive" <% } %>>
         <td>${it.id}</td>
-        <td>${it.questionnaireUrl}/${it.questionnaire_id}/${it.version}</td>
+        <td>${it.questionnaireUrl}${it.questionnaire_id}/${it.version}</td>
         <td>${it.created_on}</td>
         <td>${it.formtype}</td>
         <% if (it.status == FHIRFORM_CONSTANTS.ACTIVE) { %>

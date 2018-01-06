@@ -37,8 +37,8 @@ public class JsonObjectFromFhir {
         this.__form.add(jsonObjectForm);
     }
 
-    public void add_schema(String key, JsonObjectItem jsonObjectItem) {
-        this.__schema.put(key, jsonObjectItem);
+    public void add_schema(String key, JsonObjectSet jsonObjectSet) {
+        this.__schema.put(key, jsonObjectSet);
     }
 
     //Previously submitted form values

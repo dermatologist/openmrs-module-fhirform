@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
-public class JsonObjectItem {
+public class JsonObjectSet {
     private String __type = "object";
     private String __title = "";
     private ArrayList<JsonObjectProperty> __properties = new ArrayList<JsonObjectProperty>();

@@ -18,7 +18,7 @@ public class FhirformTransform {
 
     // JsonObjects
     JsonObjectProperty jsonObjectProperty;
-    JsonObjectItem jsonObjectItem = new JsonObjectItem();
+    JsonObjectSet jsonObjectSet = new JsonObjectSet();
     JsonObjectForm jsonObjectForm = new JsonObjectForm();
     JsonObjectFunction jsonObjectFunction = new JsonObjectFunction();
     JsonObjectFromFhir jsonObjectFromFhir = new JsonObjectFromFhir();
@@ -43,22 +43,62 @@ public class FhirformTransform {
             jsonObjectProperty = new JsonObjectProperty();
 
             // TODO: Group to array / fieldset
-            String _type = i.getType().toString().toLowerCase();
-            if (_type.contains("group")) {
-                _type = "object";
+            if (i.getType() == Questionnaire.QuestionnaireItemType.GROUP) {
+                jsonObjectFromFhir.add_schema(i.getLinkId().toString(), process_group(i));
+            } else {
+                jsonObjectProperty = process_property(i);
+                jsonObjectSet.add_item(jsonObjectProperty);
             }
-
-            jsonObjectProperty.set__linkId(i.getLinkId());
-            jsonObjectProperty.set__title(i.getText());
-            jsonObjectProperty.set__type(_type);
-            jsonObjectItem.add_item(jsonObjectProperty);
         }
-        jsonObjectItem.set__title("Questionnaire");//TODO: To change
+        jsonObjectSet.set__title(" ");//TODO: To change
         String generatedString = RandomStringUtils.randomAlphanumeric(10);
-        jsonObjectFromFhir.add_schema(generatedString, jsonObjectItem);
+        jsonObjectFromFhir.add_schema(generatedString, jsonObjectSet);
 
         return jsonObjectFromFhir.getForm();
 
+    }
+
+    public JsonObjectProperty process_property(Questionnaire.QuestionnaireItemComponent i) {
+        JsonObjectProperty jp = new JsonObjectProperty();
+        if (i.getType() == Questionnaire.QuestionnaireItemType.CHOICE) {
+
+            jp.set__linkId(i.getLinkId());
+            jp.set__title(i.getText());
+            jp.set__type("string");
+            jp.add_item(i.getOptionsTarget().toString());
+
+        } else if (i.getType() == Questionnaire.QuestionnaireItemType.BOOLEAN) {
+
+            jp.set__linkId(i.getLinkId());
+            jp.set__title(i.getText());
+            jp.set__type("boolean");
+
+        } else if (i.getType() == Questionnaire.QuestionnaireItemType.INTEGER) {
+
+            jp.set__linkId(i.getLinkId());
+            jp.set__title(i.getText());
+            jp.set__type("integer");
+
+        } else {
+
+            jp.set__linkId(i.getLinkId());
+            jp.set__title(i.getText());
+            jp.set__type("string");
+        }
+        return jp;
+    }
+
+    public JsonObjectSet process_group(Questionnaire.QuestionnaireItemComponent i) {
+        JsonObjectSet set = new JsonObjectSet();
+
+        set.set__type("object");
+        set.set__title(i.getText());
+
+        for (Questionnaire.QuestionnaireItemComponent i2 : i.getItem()) {
+
+            set.add_item(process_property(i2));
+        }
+        return set;
     }
 
     public String getFormID() {
