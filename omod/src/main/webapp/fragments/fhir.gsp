@@ -105,7 +105,7 @@
                     <% fhirformdefs.each { %>
                     <tr<% if (it.status != FHIRFORM_CONSTANTS.ACTIVE) { %> class="inactive" <% } %>>
                         <td>${it.id}</td>
-                        <td>${it.backgroundImage} (${it.comments})</td>
+                        <td>${it.questionnaire_id}/${it.version}</td>
                         <td>${it.created_on}</td>
                         <% if (it.status == FHIRFORM_CONSTANTS.ACTIVE) { %>
                         <td>
